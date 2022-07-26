@@ -23,7 +23,7 @@ jobs:
       - run: php artisan key:generate
       - run: chmod -R 777 storage bootstrap/cache
       - run: mkdir -p database
-      - run:  touch database/database.sqlite
+      - run:  touch database/database.sqlite 
       - run: php artisan migrate --env=testing
       - run: php artisan test --testsuite=Feature
 # Invoke jobs via workflows
