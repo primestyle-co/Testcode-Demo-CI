@@ -1,160 +1,34 @@
+# Use the latest 2.1 version of CircleCI pipeline process engine.
+# See: https://circleci.com/docs/2.0/configuration-reference
 version: 2.1
 
-executors:
-  backend-executor:
-    docker:
-      - image: circleci/php:8
-      - image: circleci/mysql:5.7
-        environment:
-          MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
-          MYSQL_DATABASE: pms_test
-    working_directory: ~/workspace/backend
-
-  frontend-executor:
-    docker:
-      - image: circleci/node:14
-    working_directory: ~/workspace/frontend-sample
-
+# Define a job to be invoked later in a workflow.
+# See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
-  post-backlog:
-    executor: backend-executor
+  say-hello:
+    # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
+    # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
+    docker:
+      - image: cimg/php:8.1.7
+    # Add steps to the job
+    # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
-      - checkout:
-          path: ~/workspace
-      - run: sh -x ~/workspace/.circleci/post_backlog.sh
-      - run: sh -x ~/workspace/.circleci/move_backlog_ticket_status.sh
-
-  setup-backend:
-    executor: backend-executor
-    steps:
-      - checkout:
-          path: ~/workspace
-      #Install PHP Extensions for maatwebsite/excel
-      - run: sudo apt-get update && sudo apt-get install -y libpng-dev libjpeg62-turbo-dev
+      - checkout
       - run:
-          name: Install PHP Extensions
-          command: sudo docker-php-ext-install gd exif
-      - run: sudo composer self-update
-      - restore_cache:
-          key: &composer-cache-key composer-v1-{{ checksum "composer.lock" }}
-      - run: composer install -n --prefer-dist
-      - save_cache:
-          key: *composer-cache-key
-          paths:
-            - vendor
-      - persist_to_workspace:
-          root: .
-          paths:
-            - ./*
-
-  lint-backend:
-    executor: backend-executor
-    steps:
-      - attach_workspace:
-          at: .
-      - run:
-          name: Lint
-          command: |
-            mkdir -p ./reports/junit
-            ./vendor/bin/php-cs-fixer fix --dry-run --format junit --config .php-cs-fixer.dist.php > ./reports/junit/results.xml
-      - store_test_results:
-          path: ./reports
-      - store_artifacts:
-          path: ./reports
-
-  unittest-backend:
-    executor: backend-executor
-    steps:
-      - attach_workspace:
-          at: .
-      - run:
-          name: Initialize for unit test
-          command: |
-            sudo docker-php-ext-install pdo_mysql
-            sudo docker-php-ext-enable pdo_mysql
-            echo -e "127.0.0.1 db" | sudo tee -a /etc/hosts
-            echo 'memory_limit = -1' | sudo tee -a /usr/local/etc/php/conf.d/docker-php-memlimit.ini
-      - run:
-          name: Wait untill MySQL is redy
-          command: |
-            for i in `seq 1 10`;
-            do
-              nc -z db 3306 && echo Success && exit 0
-              echo -n .
-              sleep 1
-            done
-            echo Failed waiting for MySQL && exit 1
-      - run: php artisan migrate:fresh --seed --env=testing
-      - run:
-          name: Unit Test
-          command: |
-            mkdir -p ~/reports
-            phpdbg -qrr ./vendor/bin/phpunit --log-junit ./reports/junit.xml tests
-      - store_test_results:
-          path: ./reports
-      - store_artifacts:
-          path: ./reports
-      - store_artifacts:
-          path: ./cavarage-report
-
-  setup-frontend:
-    executor: frontend-executor
-    steps:
-      - checkout:
-          path: ~/workspace/
-      - restore_cache:
-          key: &yarn-cache-key yarn-v11-{{ checksum "yarn.lock" }}
-      - run: yarn install --frozen-lockfile --cache-folder ~/.cache/yarn
-      - save_cache:
-          key: *yarn-cache-key
-          paths:
-            - ./node_modules
-      - persist_to_workspace:
-          root: .
-          paths:
-            - ./*
-
-  lint-frontend:
-    executor: frontend-executor
-    steps:
-      - attach_workspace:
-          at: .
-      - run:
-          name: Lint
-          command: |
-            mkdir -p reports
-            yarn --silent lint:ci > ./reports/eslint.xml
-      - store_test_results:
-          path: ./reports
-
-  unittest-frontend:
-    executor: frontend-executor
-    steps:
-      - attach_workspace:
-          at: .
-      - run:
-          name: Unit Test
-          command: yarn test:unit:ci
-          environment:
-            JEST_JUNIT_OUTPUT_DIR: ./reports/junit/js-test-results.xml
-      - store_test_results:
-          path: ./reports
+          name: "Say hello"
+          command: "echo Hello, World!"
+      - run: php --version
+      - run: php -r "file_exists('.env') || copy('.env.example', '.env');"
+      - run: composer install -q --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist
+      - run: php artisan key:generate
+      - run: chmod -R 777 storage bootstrap/cache
+      - run: mkdir -p database
+      - run:  touch database/database.sqlite 
+      - run: php artisan migrate
+      - run: php artisan test --testsuite=Feature
+# Invoke jobs via workflows
+# See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
-  version: 2
-  code-analysis:
+  say-hello-workflow:
     jobs:
-      - post-backlog
-      - setup-backend
-      - lint-backend:
-          requires:
-            - setup-backend
-      - unittest-backend:
-          requires:
-            - setup-backend
-      - setup-frontend
-      - lint-frontend:
-          requires:
-            - setup-frontend
-      - unittest-frontend:
-          requires:
-            - setup-frontend
+      - say-hello
