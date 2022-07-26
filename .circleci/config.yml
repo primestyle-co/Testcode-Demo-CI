@@ -1,0 +1,31 @@
+version: 2
+permissions:
+  contents: read
+jobs:
+  build_and_test:
+    docker:
+      - image: framgia/laravel-workspace
+      - image: mysql:5.7
+        environment:
+          MYSQL_HOST: 127.0.0.1
+          MYSQL_DATABASE: forge
+          MYSQL_USER: forge
+          MYSQL_PASSWORD: 
+          MYSQL_ROOT_PASSWORD: 
+    steps:
+      - checkout
+      - run: php -r "file_exists('.env') || copy('.env.example', '.env');"
+      - run: composer install --ignore-platform-reqs
+      - run: chmod -R 777 storage bootstrap/cache
+      # run test
+      - run: php artisan key:generate
+      - run: mkdir -p database
+      - run:  touch database/database.sqlite
+      - run: php artisan migrate --seed
+      - run: php artisan test --testsuite=Feature 
+
+workflows:
+  version: 2
+  build-and-deploy:
+    jobs:
+      - build_and_test
