@@ -33,7 +33,7 @@ jobs:
       - run: sudo apt-get install mariadb-server
       
       - run: sudo docker-php-ext-configure intl
-      - run: sudo docker-php-ext-install intl
+      # - run: sudo docker-php-ext-install intl
       - run: sudo docker-php-ext-install pdo_mysql
 
       - run:
@@ -49,9 +49,9 @@ jobs:
       # - run: mkdir -p database
       # - run:  touch database/laravel_test_test.sqlite 
       
-      - run:
-          name: Check PhpUnit
-          command: ./vendor/bin/phpunit
+      # - run:
+      #     name: Check PhpUnit
+      #     command: ./vendor/bin/phpunit
 
       - run: php artisan migrate --seed --env=testing
       - run: php artisan test --testsuite=Feature 
