@@ -193,12 +193,12 @@ class PostControllerTest extends TestCase
     /**
      * test testDeletePostNotExistInDatabase
      */
-    public function testDeletePostNotExistInDatabase()
-    {
-        $this->actingAs($this->user);
-        $response = $this->postJson('api/posts/delete/' . 100);
-        $response->assertStatus(404);
-    }
+    // public function testDeletePostNotExistInDatabase()
+    // {
+    //     $this->actingAs($this->user);
+    //     $response = $this->postJson('api/posts/delete/' . 100);
+    //     $response->assertStatus(404);
+    // }
 
     /**
      * test testCannotDeletePostOfAnotherUser
