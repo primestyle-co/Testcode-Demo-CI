@@ -15,16 +15,16 @@ jobs:
       # - image: circleci/mysql:5.7
       - image: circleci/php:8
       # - image: circleci/mysql:5.7
-        # environment:
-        #   MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
-        #   MYSQL_DATABASE: laravel_test_test
         environment:
           MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
-          MYSQL_HOST: 127.0.0.1
           MYSQL_DATABASE: laravel
-          MYSQL_USER: root
-          MYSQL_PASSWORD:
-          MYSQL_ROOT_PASSWORD:
+        # environment:
+        #   MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+        #   MYSQL_HOST: 127.0.0.1
+        #   MYSQL_DATABASE: laravel
+        #   MYSQL_USER: root
+        #   MYSQL_PASSWORD:
+        #   MYSQL_ROOT_PASSWORD:
     # Add steps to the job
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
@@ -48,7 +48,7 @@ jobs:
       - run: chmod -R 777 storage bootstrap/cache
       - run: mkdir -p database
       - run:  touch database/laravel.sqlite 
-      - run: php artisan cache:clear 
+      - run: php artisan cache:clear
       - run: php artisan config:clear
       # - run:
       #     name: Check PhpUnit
