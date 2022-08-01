@@ -32,8 +32,7 @@ jobs:
       - run: sudo apt update
       - run: sudo apt-get install mariadb-server
       - run: sudo -b unshare --pid --fork --mount-proc /lib/systemd/systemd --system-unit=basic.target
-      - run: sudo -E nsenter --all -t $(pgrep -xo systemd) runuser -P -l $USER -c "exec $SHELL"
-
+      - run: ifconfig
       - run: sudo systemctl status mariadb
       # - run: sudo docker-php-ext-configure intl
       # - run: sudo docker-php-ext-install intl
