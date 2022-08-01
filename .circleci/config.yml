@@ -22,11 +22,19 @@ jobs:
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
       - checkout
+      - run: sudo apt-get install -y libzip-dev
+      - run: sudo docker-php-ext-install zip
+      - run: sudo apt-get update
+      - run: sudo apt-get install -y zlib1g-dev libicu-dev g++
+      - run: sudo docker-php-ext-configure intl
+      - run: sudo docker-php-ext-install intl
+      - run: sudo docker-php-ext-install pdo_mysql
+      - run: sudo apt-get install mysql-server
+      - run: sudo apt-get install mysql-client
       - run:
           name: "Say hello"
           command: "echo Hello, World!"
       - run: php --version
-      - run: sudo apt-get install mysql-client
       - run: mysql -V
       - run: php -r "file_exists('.env') || copy('.env.example', '.env');"
       - run: composer install -q --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist
