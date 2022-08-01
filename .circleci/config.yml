@@ -49,12 +49,9 @@ jobs:
       # - run: mkdir -p database
       # - run:  touch database/laravel_test_test.sqlite 
       
-      # - run:
-      #     name: Check convention PHP
-      #     command: phpcs --standard=Framgia app
       - run:
-          name: Check connection database
-          command: framgia-ci test-connect 127.0.0.1 3306 60
+          name: Check PhpUnit
+          command: ./vendor/bin/phpunit
 
       - run: php artisan migrate --seed --env=testing
       - run: php artisan test --testsuite=Feature 
