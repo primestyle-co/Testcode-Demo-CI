@@ -46,8 +46,8 @@ jobs:
       - run: composer install -q --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist
       - run: php artisan key:generate
       - run: chmod -R 777 storage bootstrap/cache
-      # - run: mkdir -p database
-      # - run:  touch database/laravel_test_test.sqlite 
+      - run: mkdir -p database
+      - run:  touch database/laravel.sqlite 
       
       # - run:
       #     name: Check PhpUnit
