@@ -47,10 +47,9 @@ jobs:
       - run: 
           name: Run composer
           command: |
-            # composer update
-            # composer install
-            composer install -n --prefer-dist
-
+            composer update
+            composer install
+      -run: sudo apt install -y libsqlite3-dev zlib1g-dev
       - run: php artisan migrate:fresh --seed --env=testing
       - run: php artisan key:generate
       - run: chmod -R 777 storage bootstrap/cache
