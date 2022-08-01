@@ -9,8 +9,8 @@ jobs:
     # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
     # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
     docker:
-      - image: cimg/php:8.1.7
-      # - image: circleci/php:7.2-apache-stretch-node-browsers
+      # - image: cimg/php:8.1.7
+      - image: circleci/php:7.2-apache-stretch-node-browsers
       # - image: mysql:5.7
       # - image: circleci/mysql:5.7
         environment:
@@ -40,6 +40,7 @@ jobs:
       - run: php --version
       - run: mysql -V
       - run: php -r "file_exists('.env') || copy('.env.example', '.env');"
+      - run: composer update
       - run: composer install -q --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist
       - run: php artisan key:generate
       - run: chmod -R 777 storage bootstrap/cache
