@@ -40,6 +40,7 @@ jobs:
       - run: php --version
       - run: mysql -V
       - run: php -r "file_exists('.env') || copy('.env.example', '.env');"
+      - run: sudo apt install php8.0
       - run: composer update
       - run: composer install -q --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist
       - run: php artisan key:generate
