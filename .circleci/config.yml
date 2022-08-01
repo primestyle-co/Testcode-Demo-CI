@@ -25,6 +25,7 @@ jobs:
       - checkout
       - run: sudo apt-get install -y libzip-dev
       - run: sudo docker-php-ext-install zip
+      - run: sudo rm -rf /var/lib/apt/lists/* && sudo apt update
       - run: sudo apt-get update
       - run: sudo apt-get install -y zlib1g-dev libicu-dev g++
       - run: sudo docker-php-ext-configure intl
