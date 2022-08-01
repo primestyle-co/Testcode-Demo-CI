@@ -31,7 +31,8 @@ jobs:
       - checkout
       - run: sudo apt update
       - run: sudo apt-get install mariadb-server
-      - run: sudo apt install default-mysql-server
+      - run: sudo apt install default-mysql-server\
+      - run: sudo service mysql status
       # - run: sudo docker-php-ext-configure intl
       # - run: sudo docker-php-ext-install intl
       # - run: sudo docker-php-ext-install pdo_mysql
