@@ -11,7 +11,7 @@ jobs:
     docker:
       - image: cimg/php:8.1.7
       # - image: mysql:5.7
-      - image: circleci/mysql:5.7
+      # - image: circleci/mysql:5.7
         environment:
           MYSQL_HOST: 127.0.0.1
           MYSQL_DATABASE: laravel_test_test
@@ -26,6 +26,7 @@ jobs:
           name: "Say hello"
           command: "echo Hello, World!"
       - run: php --version
+      - run: sudo apt-get install mysql-client
       - run: mysql -V
       - run: php -r "file_exists('.env') || copy('.env.example', '.env');"
       - run: composer install -q --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist
