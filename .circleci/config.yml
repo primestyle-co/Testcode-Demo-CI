@@ -13,7 +13,6 @@ jobs:
       # - image: circleci/php:7.2-apache-stretch-node-browsers
       # - image: mysql:5.7
       # - image: circleci/mysql:5.7
-      - image: circleci/mysql:8.0.20-ram
         environment:
           MYSQL_HOST: 127.0.0.1
           MYSQL_DATABASE: laravel_test_test
@@ -24,17 +23,20 @@ jobs:
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
       - checkout
-      - run: sudo apt-get install -y libzip-dev
-      - run: sudo docker-php-ext-install zip
-      - run: sudo rm -rf /var/lib/apt/lists/* && sudo apt update
-      - run: sudo apt-get update
-      - run: sudo apt-get install -y zlib1g-dev libicu-dev g++
-      - run: sudo docker-php-ext-configure intl
-      - run: sudo docker-php-ext-install intl
-      - run: sudo docker-php-ext-install pdo_mysql
-      - run: sudo apt-get install mysql-server
-      - run: sudo apt-get install mysql-client
-      - run: sudo apt-get -y install mysql-server
+      - run: sudo apt update
+      - run: sudo apt install mysql-server
+      - run: sudo systemctl start mysql.service
+      # - run: sudo apt-get install -y libzip-dev
+      # - run: sudo docker-php-ext-install zip
+      # - run: sudo rm -rf /var/lib/apt/lists/* && sudo apt update
+      # - run: sudo apt-get update
+      # - run: sudo apt-get install -y zlib1g-dev libicu-dev g++
+      # - run: sudo docker-php-ext-configure intl
+      # - run: sudo docker-php-ext-install intl
+      # - run: sudo docker-php-ext-install pdo_mysql
+      # - run: sudo apt-get install mysql-server
+      # - run: sudo apt-get install mysql-client
+      # - run: sudo apt-get -y install mysql-server
       - run:
           name: "Say hello"
           command: "echo Hello, World!"
