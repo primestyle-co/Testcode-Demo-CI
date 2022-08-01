@@ -30,19 +30,6 @@ jobs:
       - checkout
       - run: sudo apt update
       - run: sudo apt-get install mariadb-server
-      # - run: sudo apt-get install mysql-server
-      # - run: sudo service mysql restart
-      # - run: sudo apt-get install -y libzip-dev
-      # - run: sudo docker-php-ext-install zip
-      # - run: sudo rm -rf /var/lib/apt/lists/* && sudo apt update
-      # - run: sudo apt-get update
-      # - run: sudo apt-get install -y zlib1g-dev libicu-dev g++
-      # - run: sudo docker-php-ext-configure intl
-      # - run: sudo docker-php-ext-install intl
-      # - run: sudo docker-php-ext-install pdo_mysql
-      # - run: sudo apt-get install mysql-server
-      # - run: sudo apt-get install mysql-client
-      # - run: sudo apt-get -y install mysql-server
       - run:
           name: "Say hello"
           command: "echo Hello, World!"
@@ -53,10 +40,10 @@ jobs:
       - run: composer install -q --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist
       - run: php artisan key:generate
       - run: chmod -R 777 storage bootstrap/cache
-      # - run: mkdir -p database
-      # - run:  touch database/database.sqlite 
-      # - run: php artisan migrate --seed --env=testing
-      # - run: php artisan test --testsuite=Feature 
+      - run: mkdir -p database
+      - run:  touch database/database.sqlite 
+      - run: php artisan migrate --seed --env=testing
+      - run: php artisan test --testsuite=Feature 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
