@@ -37,6 +37,9 @@ jobs:
       - run: sudo docker-php-ext-install pdo_mysql
       
       - run:
+          name: Install PHP Extensions
+          command: sudo docker-php-ext-install gd exif
+      - run:
           name: "Say hello"
           command: "echo Hello, World!"
       - run: php --version
