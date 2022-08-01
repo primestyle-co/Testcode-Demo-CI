@@ -61,9 +61,10 @@ jobs:
 
       - run:
           name: Lint
-          command: |
-            mkdir -p ./reports/junit
-            ./vendor/bin/php-cs-fixer fix --dry-run --format junit --config .php-cs-fixer.dist.php > ./reports/junit/results.xml
+          command: | 
+            composer global require tightenco/tlint
+            composer global update tightenco/tlint
+            tlint format
 
       # - run:
       #     name: Check PhpUnit
