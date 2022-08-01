@@ -41,6 +41,7 @@ jobs:
           command: "echo Hello, World!"
       - run: php --version
       - run: mysql -V
+      - run: mysql -h 127.0.0.1 -u root -e"quit"
       - run: php -r "file_exists('.env') || copy('.env.example', '.env');"
       - run: composer update
       - run: composer install -q --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist
@@ -50,7 +51,7 @@ jobs:
       - run:  touch database/laravel.sqlite 
       - run: php artisan cache:clear
       - run: php artisan config:clear
-      - run: mysql -h 127.0.0.1 -u root -e"quit"
+
       # - run:
       #     name: Check PhpUnit
       #     command: ./vendor/bin/phpunit
