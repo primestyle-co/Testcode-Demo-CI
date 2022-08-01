@@ -10,13 +10,13 @@ jobs:
     # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
     docker:
       - image: framgia/laravel-workspace
-      - image: mysql:5.7
-        environment:
-          MYSQL_HOST: 127.0.0.1
-          MYSQL_DATABASE: laravel_test_test
-          MYSQL_USER: root
-          MYSQL_PASSWORD:
-          MYSQL_ROOT_PASSWORD:
+      # - image: mysql:5.7
+      #   environment:
+      #     MYSQL_HOST: 127.0.0.1
+      #     MYSQL_DATABASE: laravel_test_test
+      #     MYSQL_USER: root
+      #     MYSQL_PASSWORD:
+      #     MYSQL_ROOT_PASSWORD:
     # Add steps to the job
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
