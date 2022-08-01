@@ -32,6 +32,14 @@ jobs:
       - run:
           name: Install PHP Extensions
           command: sudo docker-php-ext-install gd exif
+      - run:
+          name: Initialize for unit test
+          command: |
+            sudo docker-php-ext-install pdo_mysql
+            sudo docker-php-ext-enable pdo_mysql
+            echo -e "127.0.0.1 db" | sudo tee -a /etc/hosts
+            echo 'memory_limit = -1' | sudo tee -a /usr/local/etc/php/conf.d/docker-php-memlimit.ini
+     
       # - run: sudo apt-get install -y libzip-dev
       # - run: sudo docker-php-ext-install zip
       # - run: sudo rm -rf /var/lib/apt/lists/* && sudo apt update
