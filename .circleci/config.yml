@@ -24,15 +24,15 @@ jobs:
       - run:
           name: "Say hello"
           command: "echo Hello, World!"
-      - run: php --version
-      - run: php -r "file_exists('.env') || copy('.env.example', '.env');"
-      - run: composer install
-      - run: php artisan key:generate
-      - run: chmod -R 777 storage bootstrap/cache
-      - run: mkdir -p database
-      - run:  touch database/database.sqlite 
-      - run: php artisan migrate --seed --env=testing
-      - run: php artisan test --testsuite=Feature 
+      # - run: php --version
+      # - run: php -r "file_exists('.env') || copy('.env.example', '.env');"
+      # - run: composer install
+      # - run: php artisan key:generate
+      # - run: chmod -R 777 storage bootstrap/cache
+      # - run: mkdir -p database
+      # - run:  touch database/database.sqlite 
+      # - run: php artisan migrate --seed --env=testing
+      # - run: php artisan test --testsuite=Feature 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
