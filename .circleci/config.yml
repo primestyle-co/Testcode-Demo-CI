@@ -41,24 +41,24 @@ jobs:
       # - run: sudo docker-php-ext-install intl
       # - run: sudo docker-php-ext-install pdo_mysql
 
-      - run:
-          name: Initialize for unit test
-          command: |
-            sudo docker-php-ext-install pdo_mysql
-            sudo docker-php-ext-enable pdo_mysql
-            echo -e "127.0.0.1 db" | sudo tee -a /etc/hosts
-            echo 'memory_limit = -1' | sudo tee -a /usr/local/etc/php/conf.d/docker-php-memlimit.ini
-      - run:
-          name: Wait untill MySQL is redy
-          command: |
-            for i in `seq 1 10`;
-            do
-              nc -z db 3306 && echo Success && exit 0
-              echo -n .
-              sleep 1
-            done
-            echo Failed waiting for MySQL && exit 1
-      - run: php artisan migrate:fresh --seed --env=testing
+      # - run:
+      #     name: Initialize for unit test
+      #     command: |
+      #       sudo docker-php-ext-install pdo_mysql
+      #       sudo docker-php-ext-enable pdo_mysql
+      #       echo -e "127.0.0.1 db" | sudo tee -a /etc/hosts
+      #       echo 'memory_limit = -1' | sudo tee -a /usr/local/etc/php/conf.d/docker-php-memlimit.ini
+      # - run:
+      #     name: Wait untill MySQL is redy
+      #     command: |
+      #       for i in `seq 1 10`;
+      #       do
+      #         nc -z db 3306 && echo Success && exit 0
+      #         echo -n .
+      #         sleep 1
+      #       done
+      #       echo Failed waiting for MySQL && exit 1
+      # - run: php artisan migrate:fresh --seed
 
 
 
