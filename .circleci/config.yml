@@ -62,7 +62,7 @@ jobs:
           paths:
             - ./vendor
 
-      - run: php artisan migrate:fresh --seed --env=testing
+      - run: php artisan migrate:fresh --seed
       - run: php artisan key:generate
       - run: chmod -R 777 storage bootstrap/cache
 
