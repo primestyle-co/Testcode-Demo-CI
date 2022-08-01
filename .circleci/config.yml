@@ -53,7 +53,7 @@ jobs:
       #     name: Check PhpUnit
       #     command: ./vendor/bin/phpunit
 
-      - run: php artisan migrate --seed --env=testing
+      - run: php artisan migrate --seed
       - run: php artisan test --testsuite=Feature 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
