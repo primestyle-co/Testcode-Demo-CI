@@ -35,10 +35,7 @@ jobs:
       - run: sudo docker-php-ext-configure intl
       - run: sudo docker-php-ext-install intl
       - run: sudo docker-php-ext-install pdo_mysql
-      
-      - run:
-          name: Install PHP Extensions
-          command: sudo docker-php-ext-install gd exif
+
       - run:
           name: "Say hello"
           command: "echo Hello, World!"
@@ -50,7 +47,7 @@ jobs:
       - run: php artisan key:generate
       - run: chmod -R 777 storage bootstrap/cache
       - run: mkdir -p database
-      - run:  touch database/database.sqlite 
+      - run:  touch database/laravel_test_test.sqlite 
       - run: php artisan migrate --seed --env=testing
       - run: php artisan test --testsuite=Feature 
 # Invoke jobs via workflows
