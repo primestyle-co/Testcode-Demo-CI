@@ -36,8 +36,8 @@ jobs:
       - run: mysql -V
       # - run: sudo systemctl start mysqld
       - run: ps -Af | grep mysqld
+      - run: mysql.server start
       - run: mysql -h 127.0.0.1 -u root -e"quit"
-      # - run: sudo systemctl status mariadb
       # - run: sudo docker-php-ext-configure intl
       # - run: sudo docker-php-ext-install intl
       # - run: sudo docker-php-ext-install pdo_mysql
