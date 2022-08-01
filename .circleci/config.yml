@@ -31,7 +31,7 @@ jobs:
       - run: sudo apt update
       - run: sudo apt-get install mariadb-server
       # - run: sudo systemctl start mysql.service
-      - run: sudo /etc/init.d/mysql - root -p start
+      - run: sudo start mysql
       # - run: sudo apt-get install -y libzip-dev
       # - run: sudo docker-php-ext-install zip
       # - run: sudo rm -rf /var/lib/apt/lists/* && sudo apt update
