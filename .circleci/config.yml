@@ -34,22 +34,26 @@ jobs:
               sleep 1
             done
             echo Failed waiting for MySQL && exit 1
-      - run: mkdir -p database
-      - run:  touch database/laravel.sqlite 
+      - run: 
+          name: Create database
+          command: |
+            mkdir -p database
+            touch database/laravel.sqlite 
 
-      - run: php -r "file_exists('.env') || copy('.env.example', '.env');"
-      - run: composer update
-      - run: composer install
-      - run: php artisan migrate:fresh --seed
-      - run: php --version
+      - run: 
+          name: Create file env
+          command: php -r "file_exists('.env') || copy('.env.example', '.env');"
+
+      - run: 
+          name: Run composer
+          command: |
+            composer update
+            composer install
+
+      - run: php artisan migrate:fresh --seed --env=testing
       - run: php artisan key:generate
       - run: chmod -R 777 storage bootstrap/cache
 
-      # - run: php artisan cache:clear
-      # - run: php artisan config:clear
-      # - run:
-      #     name: Check PhpUnit
-      #     command: ./vendor/bin/phpunit
       - run: php artisan test --testsuite=Feature 'tests/Feature/Http/Controllers/PostControllerTest.php'
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
