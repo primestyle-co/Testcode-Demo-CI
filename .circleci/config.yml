@@ -69,5 +69,5 @@ jobs:
 workflows:
   say-hello-workflow:
     jobs:
-      # - say-hello
-      - github-super-linter/lint
+      - say-hello
+      # - github-super-linter/lint
