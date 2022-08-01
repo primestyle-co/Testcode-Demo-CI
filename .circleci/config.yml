@@ -48,14 +48,14 @@ jobs:
           name: Run composer
           command: |
             composer update
-            composer install
-            composer install --prefer-source --no-interaction --no-dev
+            # composer install
+            composer install -n --prefer-dist
 
       - run: php artisan migrate:fresh --seed --env=testing
       - run: php artisan key:generate
       - run: chmod -R 777 storage bootstrap/cache
 
-      - run: php artisan test --testsuite=Feature
+      - run: php artisan test --testsuite=Feature 'tests/Feature/Http/Controllers/PostControllerTest.php'
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
