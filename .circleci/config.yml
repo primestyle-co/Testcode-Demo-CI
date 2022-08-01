@@ -65,10 +65,10 @@ jobs:
           path: ./reports
       - store_artifacts:
           path: ./cavarage-report
-          
-      - run:
-          name: "Run Unit Tests"
-          command: ./vendor/bin/phpunit tests/Feature/Http/Controllers
+
+      # - run:
+      #     name: "Run Unit Tests"
+      #     command: ./vendor/bin/phpunit tests/Feature/Http/Controllers
       # - run: php artisan test --testsuite=Feature 'tests/Feature/Http/Controllers/PostControllerTest.php'
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
