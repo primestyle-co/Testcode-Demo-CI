@@ -14,16 +14,16 @@ jobs:
       # - image: mysql:5.7
       # - image: circleci/mysql:5.7
       - image: circleci/php:8
-      # - image: circleci/mysql:5.7
-        # environment:
-        #   MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
-        #   MYSQL_DATABASE: laravel
+      - image: circleci/mysql:5.7
         environment:
           MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
-          MYSQL_HOST: 127.0.0.1
           MYSQL_DATABASE: laravel
-          MYSQL_USER: root
-          MYSQL_PASSWORD:
+        # environment:
+        #   MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+        #   MYSQL_HOST: 127.0.0.1
+        #   MYSQL_DATABASE: laravel
+        #   MYSQL_USER: root
+        #   MYSQL_PASSWORD:
         #   MYSQL_ROOT_PASSWORD:
     # Add steps to the job
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
@@ -36,7 +36,7 @@ jobs:
       - run: mysql -V
       # - run: sudo systemctl start mysqld
       - run: ps -Af | grep mysqld
-      - run: mysql.server start
+      - run: 
       - run: mysql -h 127.0.0.1 -u root -e"quit"
       # - run: sudo docker-php-ext-configure intl
       # - run: sudo docker-php-ext-install intl
