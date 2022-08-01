@@ -22,7 +22,6 @@ jobs:
           command: |
             sudo docker-php-ext-install pdo_mysql
             sudo docker-php-ext-enable pdo_mysql
-            sudo docker-php-ext-install zip
             echo -e "127.0.0.1 db" | sudo tee -a /etc/hosts
             echo 'memory_limit = -1' | sudo tee -a /usr/local/etc/php/conf.d/docker-php-memlimit.ini
       - run:
@@ -45,28 +44,28 @@ jobs:
           name: Create file env
           command: php -r "file_exists('.env') || copy('.env.example', '.env');"
 
-      - restore_cache:
-          keys:
-            # "composer.lock" can be used if it is committed to the repo
-            - v1-dependencies-{{ checksum "composer.json" }}
-            # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
-
       - run: 
           name: Run composer
           command: |
             composer update
             composer install
-      
-      - save_cache:
-          key: v1-dependencies-{{ checksum "composer.json" }}
-          paths:
-            - ./vendor
 
       - run: php artisan migrate:fresh --seed 
       - run: php artisan key:generate
       - run: chmod -R 777 storage bootstrap/cache
 
+      - run:
+          name: Unit Test
+          command: |
+            mkdir -p ~/reports
+            phpdbg -qrr ./vendor/bin/phpunit --log-junit ./reports/junit.xml tests
+      - store_test_results:
+          path: ./reports
+      - store_artifacts:
+          path: ./reports
+      - store_artifacts:
+          path: ./cavarage-report
+          
       - run:
           name: "Run Unit Tests"
           command: ./vendor/bin/phpunit tests/Feature/Http/Controllers
