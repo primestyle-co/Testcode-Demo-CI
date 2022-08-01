@@ -1,51 +1,40 @@
-version: 2
+# Use the latest 2.1 version of CircleCI pipeline process engine.
+# See: https://circleci.com/docs/2.0/configuration-reference
+version: 2.1
+
+# Define a job to be invoked later in a workflow.
+# See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
-  build_and_test:
+  say-hello:
+    # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
+    # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
     docker:
-      - image: framgia/laravel-workspace
-      - image: mysql:5.7
+      - image: cimg/php:8.1.7
         environment:
           MYSQL_HOST: 127.0.0.1
-          MYSQL_DATABASE: homestead
-          MYSQL_USER: homestead
-          MYSQL_PASSWORD: secret
+          MYSQL_DATABASE: laravel_test_test
+          MYSQL_USER: root
+          MYSQL_PASSWORD: root
           MYSQL_ROOT_PASSWORD: root
+    # Add steps to the job
+    # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
       - checkout
-      - run: cp .env.testing.example .env.testing
-      # composer cache
-      - restore_cache:
-          keys:
-            - vendor-v1-{{ checksum "composer.lock" }}
-      - run:  composer install
-      - save_cache:
-          key: vendor-v1-{{ checksum "composer.lock" }}
-          paths:
-            - vendor
-      # Yarn
-      - restore_cache:
-          name: Restore yarn cache
-          keys:
-            - yarn-{{ checksum "yarn.lock" }}
-            - yarn-
-      - run: yarn
-      - save_cache:
-          paths:
-            - node_modules
-          key: yarn-{{ checksum "composer.json" }}
-
       - run:
-          name: Check convention javarscript
-          command: npm run eslint
-      # run test
-      - run: php artisan key:generate --env=testing
-      - run:
-          name: Check convention PHP
-          command: phpcs --standard=Framgia app
-      - run:
-          name: Check connection database
-          command: framgia-ci test-connect 127.0.0.1 3306 60
+          name: "Say hello"
+          command: "echo Hello, World!"
+      - run: php --version
+      - run: php -r "file_exists('.env') || copy('.env.example', '.env');"
+      - run: composer install -q --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist
+      - run: php artisan key:generate
+      - run: chmod -R 777 storage bootstrap/cache
+      - run: mkdir -p database
+      - run:  touch database/database.sqlite 
       - run: php artisan migrate --seed --env=testing
-      - run:
-          name: Check PhpUnit
-          command: ./vendor/bin/phpunit
+      - run: php artisan test --testsuite=Feature 
+# Invoke jobs via workflows
+# See: https://circleci.com/docs/2.0/configuration-reference/#workflows
+workflows:
+  say-hello-workflow:
+    jobs:
+      - say-hello
