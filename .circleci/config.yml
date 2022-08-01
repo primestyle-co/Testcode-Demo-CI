@@ -11,6 +11,7 @@ jobs:
     docker:
       - image: cimg/php:8.1.7
       # - image: mysql:5.7
+      - image: circleci/mysql:5.7
         environment:
           MYSQL_HOST: 127.0.0.1
           MYSQL_DATABASE: laravel_test_test
