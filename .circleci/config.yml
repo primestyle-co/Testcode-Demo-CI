@@ -47,7 +47,7 @@ jobs:
       - run: 
           name: Run composer
           command: |
-            composer update
+            # composer update
             # composer install
             composer install -n --prefer-dist
 
