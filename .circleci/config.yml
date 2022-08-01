@@ -50,7 +50,7 @@ jobs:
       # - run:
       #     name: Check PhpUnit
       #     command: ./vendor/bin/phpunit
-      - run: php artisan test --testsuite=Feature\Http\Controllers\PostControllerTest.php
+      - run: php artisan test --testsuite=Feature 'tests/Feature/Http/Controllers/PostControllerTest.php'
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
