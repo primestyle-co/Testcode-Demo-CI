@@ -44,44 +44,15 @@ jobs:
           name: Create file env
           command: php -r "file_exists('.env') || copy('.env.example', '.env');"
 
-      - run: wget https://phar.phpunit.de/phpunit-5.6.2.phar
-      - run: chmod +x phpunit-5.6.2.phar
-      - run: mv phpunit-5.6.2.phar phpunit
-      
-      - run: sudo apt-get update && sudo apt-get install -y libpng-dev libjpeg62-turbo-dev
-      - run:
-          name: Install PHP Extensions
-          command: sudo docker-php-ext-install gd exif
-      - run: sudo composer self-update
-      - restore_cache:
-          key: &composer-cache-key composer-v1-{{ checksum "composer.lock" }}
-      # - run: composer install -n --prefer-dist
-
       - run: 
           name: Run composer
           command: |
             composer update
-            composer install -n --prefer-dist
+            composer install
 
       - run: php artisan migrate:fresh --seed 
       - run: php artisan key:generate
       - run: chmod -R 777 storage bootstrap/cache
-
-      # - run:
-      #     name: Unit Test
-      #     command: |
-      #       mkdir -p ~/reports
-      #       phpdbg -qrr ./vendor/bin/phpunit --log-junit ./reports/junit.xml tests
-      # - store_test_results:
-      #     path: ./reports
-      # - store_artifacts:
-      #     path: ./reports
-      # - store_artifacts:
-      #     path: ./cavarage-report
-
-      # - run:
-      #     name: "Run Unit Tests"
-      #     command: ./vendor/bin/phpunit tests/Feature/Http/Controllers
 
       - run: php artisan test --testsuite=Feature 'tests/Feature/Http/Controllers/PostControllerTest.php'
 # Invoke jobs via workflows
