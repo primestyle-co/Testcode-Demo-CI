@@ -146,7 +146,7 @@ class PostControllerTest extends TestCase
         ];
         $response = $this->postJson('api/posts/' . $post->id, $data);
         $response->assertStatus(200);
-        $response->assertJsonPath('status', 'ok');
+        $response->assertJsonPath('status', 'ok--------');
         $this->assertDatabaseHas('posts', $data);
     }
 
