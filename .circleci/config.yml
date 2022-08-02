@@ -12,7 +12,6 @@ jobs:
     docker:
       - image: circleci/php:8
       - image: circleci/mysql:5.7
-      - image: overtrue/phplint:8.1
         environment:
           MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
           MYSQL_DATABASE: laravel
@@ -50,8 +49,6 @@ jobs:
           name: Execute unit test
           command: php artisan test --testsuite=Feature 'tests/Feature/Http/Controllers/PostControllerTest.php'
 
-      # - run: composer require overtrue/phplint --dev -vvv 
-      - run: phplint --exclude=EXCLUDE
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 
