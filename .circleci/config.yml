@@ -49,8 +49,11 @@ jobs:
           name: Execute unit test
           command: php artisan test --testsuite=Feature 'tests/Feature/Http/Controllers/PostControllerTest.php'
 
-      - run: composer require overtrue/phplint --dev -vvv
-      - run: ./vendor/bin/phplint
+      - run: 
+          name: Setup and run lint
+          command: |
+            composer require overtrue/phplint --dev -vvv
+            ./vendor/bin/phplint
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 
