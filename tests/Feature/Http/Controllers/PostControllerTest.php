@@ -37,27 +37,27 @@ class PostControllerTest extends TestCase
      * @param mixed $currentCount
      * @param mixed $testSorting
      */
-    public function testIndexSuccess($filterParams, $total, $currentCount, $testSorting = false)
-    {
-        $this->actingAs($this->user);
-        $response = $this->getJson('/api/posts?' . http_build_query($filterParams));
-        $response->assertStatus(200);
-        $response->assertJsonPath('posts.total', $total);
-        $response->assertJsonCount($currentCount, 'posts.data');
+    // public function testIndexSuccess($filterParams, $total, $currentCount, $testSorting = false)
+    // {
+    //     $this->actingAs($this->user);
+    //     $response = $this->getJson('/api/posts?' . http_build_query($filterParams));
+    //     $response->assertStatus(200);
+    //     $response->assertJsonPath('posts.total', $total);
+    //     $response->assertJsonCount($currentCount, 'posts.data');
 
-        if ($testSorting) {
-            for ($idx = 0; $idx < $currentCount - 1; $idx++) {
-                $current = $response->json('posts.data')[$idx];
-                $next = $response->json('posts.data')[$idx + 1];
+    //     if ($testSorting) {
+    //         for ($idx = 0; $idx < $currentCount - 1; $idx++) {
+    //             $current = $response->json('posts.data')[$idx];
+    //             $next = $response->json('posts.data')[$idx + 1];
 
-                if ($filterParams['sort_direction'] == 'desc') {
-                    self::assertTrue($current[$filterParams['sort_field']] >= $next[$filterParams['sort_field']]);
-                } else {
-                    self::assertTrue($current[$filterParams['sort_field']] <= $next[$filterParams['sort_field']]);
-                }
-            }
-        }
-    }
+    //             if ($filterParams['sort_direction'] == 'desc') {
+    //                 self::assertTrue($current[$filterParams['sort_field']] >= $next[$filterParams['sort_field']]);
+    //             } else {
+    //                 self::assertTrue($current[$filterParams['sort_field']] <= $next[$filterParams['sort_field']]);
+    //             }
+    //         }
+    //     }
+    // }
 
     /**
      * test testCreateValidateMessage
@@ -67,14 +67,14 @@ class PostControllerTest extends TestCase
      * @param mixed $params
      * @param mixed $errors
      */
-    public function testCreateValidateMessage($params, $errors)
-    {
-        $this->actingAs($this->user);
-        $response = $this->postJson('api/posts/create', $params);
-        $response->assertStatus(422);
-        // $response->assertExactJson('errors', $errors);
-        $response->assertJson(['errors' => $errors]);
-    }
+    // public function testCreateValidateMessage($params, $errors)
+    // {
+    //     $this->actingAs($this->user);
+    //     $response = $this->postJson('api/posts/create', $params);
+    //     $response->assertStatus(422);
+    //     // $response->assertExactJson('errors', $errors);
+    //     $response->assertJson(['errors' => $errors]);
+    // }
 
     /**
      * test testCreatePostSuccess
@@ -100,19 +100,19 @@ class PostControllerTest extends TestCase
      * @param mixed $params
      * @param mixed $errors
      */
-    public function testStoreValidateMessage($params, $errors)
-    {
-        $this->actingAs($this->user);
+    // public function testStoreValidateMessage($params, $errors)
+    // {
+    //     $this->actingAs($this->user);
 
-        $post = Post::factory()->create([
-            'title' => 'test 1',
-            'created_by' => $this->user->id,
-        ]);
-        $response = $this->postJson('api/posts/' . $post->id, $params);
-        $response->assertStatus(422);
-        // $response->assertExactJson('errors', $errors);
-        $response->assertJson(['errors' => $errors]);
-    }
+    //     $post = Post::factory()->create([
+    //         'title' => 'test 1',
+    //         'created_by' => $this->user->id,
+    //     ]);
+    //     $response = $this->postJson('api/posts/' . $post->id, $params);
+    //     $response->assertStatus(422);
+    //     // $response->assertExactJson('errors', $errors);
+    //     $response->assertJson(['errors' => $errors]);
+    // }
 
     public function testCannotEditPostOfAnotherUser()
     {
