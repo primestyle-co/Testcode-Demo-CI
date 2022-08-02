@@ -10,8 +10,8 @@ jobs:
     # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
     docker:
       # - image: circleci/php:8
-      # - image: circleci/mysql:5.7
-      - image: wurzag/php8-mysql
+      - image: laravelsail/php81-composer
+      - image: circleci/mysql:5.7
         environment:
           MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
           MYSQL_DATABASE: laravel
@@ -61,6 +61,7 @@ jobs:
           command: php artisan test --testsuite=Feature 'tests/Feature/Http/Controllers/PostControllerTest.php'
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
+
 workflows:
   say-hello-workflow:
     jobs:
