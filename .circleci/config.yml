@@ -17,7 +17,7 @@ jobs:
           MYSQL_DATABASE: laravel
 
     steps:
-      - checkout
+      # - checkout
       - run:
           name: Initialize for unit test
           command: |
