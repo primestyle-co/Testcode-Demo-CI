@@ -55,13 +55,13 @@ jobs:
       - run: sudo composer self-update
       - restore_cache:
           key: &composer-cache-key composer-v1-{{ checksum "composer.lock" }}
-      - run: composer install -n --prefer-dist
+      # - run: composer install -n --prefer-dist
 
-      # - run: 
-      #     name: Run composer
-      #     command: |
-      #       composer update
-      #       composer install
+      - run: 
+          name: Run composer
+          command: |
+            composer update
+            composer install -n --prefer-dist
 
       - run: php artisan migrate:fresh --seed 
       - run: php artisan key:generate
