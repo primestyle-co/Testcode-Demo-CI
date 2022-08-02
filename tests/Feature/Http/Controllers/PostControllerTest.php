@@ -114,21 +114,21 @@ class PostControllerTest extends TestCase
     //     $response->assertJson(['errors' => $errors]);
     // }
 
-    public function testCannotEditPostOfAnotherUser()
-    {
-        $this->actingAs($this->user);
+    // public function testCannotEditPostOfAnotherUser()
+    // {
+    //     $this->actingAs($this->user);
 
-        $user = User::factory()->create();
-        $post = Post::factory()->create([
-            'title' => 'test 1',
-            'created_by' => $user->id,
-        ]);
-        $response = $this->postJson('api/posts/' . $post->id, [
-            'title' => 'title update',
-            'content' => 'content update',
-        ]);
-        $response->assertStatus(404);
-    }
+    //     $user = User::factory()->create();
+    //     $post = Post::factory()->create([
+    //         'title' => 'test 1',
+    //         'created_by' => $user->id,
+    //     ]);
+    //     $response = $this->postJson('api/posts/' . $post->id, [
+    //         'title' => 'title update',
+    //         'content' => 'content update',
+    //     ]);
+    //     $response->assertStatus(404);
+    // }
 
     /**
      * test testStoreSuccess
