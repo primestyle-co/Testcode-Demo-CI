@@ -20,12 +20,15 @@ jobs:
       - run:
           name: Initialize for unit test
           command: |
+            sudo apt update
+            sudo apt install mysql-server
+            
             sudo docker-php-ext-install pdo_mysql
             sudo docker-php-ext-enable pdo_mysql
             echo -e "127.0.0.1 db" | sudo tee -a /etc/hosts
             echo 'memory_limit = -1' | sudo tee -a /usr/local/etc/php/conf.d/docker-php-memlimit.ini
       - run:
-          name: Wait untill MySQL is redy
+          name: Wait untill MySQL is ready
           command: |
             for i in `seq 1 10`;
             do
@@ -52,9 +55,11 @@ jobs:
 
       - run: php artisan migrate:fresh --seed 
       - run: php artisan key:generate
-      - run: chmod -R 777 storage bootstrap/cache
+      # - run: chmod -R 777 storage bootstrap/cache
 
-      - run: php artisan test --testsuite=Feature 'tests/Feature/Http/Controllers/PostControllerTest.php'
+      - run: 
+          name: Execute unit test
+          command: php artisan test --testsuite=Feature 'tests/Feature/Http/Controllers/PostControllerTest.php'
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
