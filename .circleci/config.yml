@@ -18,7 +18,7 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Initialize for unit test
+          name: Create connect between mysql and laravel
           command: |
             sudo docker-php-ext-install pdo_mysql
             sudo docker-php-ext-enable pdo_mysql
