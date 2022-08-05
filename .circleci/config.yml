@@ -43,6 +43,8 @@ jobs:
 
       - run: php artisan migrate:fresh --seed 
       - run: php artisan key:generate
+      - restore_cache:
+          key: &yarn-cache-key yarn-v11-{{ checksum "yarn.lock" }}
       - run: yarn install
       - run: yarn run build
       - run: 
