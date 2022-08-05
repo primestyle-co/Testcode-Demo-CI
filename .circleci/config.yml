@@ -46,7 +46,8 @@ jobs:
       - run: 
           name: Execute unit test
           # command: php artisan test --testsuite=Feature 'tests/Feature/Http/Controllers/PostControllerTest.php'
-          command: mkdir -p ~/reports
+          command: |
+            mkdir -p ~/reports
             phpdbg -qrr ./vendor/bin/phpunit --log-junit ./reports/junit.xml tests
       - run: 
           name: Setup and run lint
