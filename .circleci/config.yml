@@ -45,7 +45,7 @@ jobs:
       - run: php artisan key:generate
       - restore_cache:
           key: &yarn-cache-key yarn-v11-{{ checksum "yarn.lock" }}
-      - run: yarn install
+      - run: yarn install --frozen-lockfile --cache-folder ~/.cache/yarn
       - run: yarn run build
       - run: 
           name: Execute unit test
