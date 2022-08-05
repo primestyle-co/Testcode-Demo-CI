@@ -12,6 +12,7 @@ jobs:
     docker:
       - image: circleci/php:8
       - image: circleci/mysql:5.7
+      - image: circleci/node:14
         environment:
           MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
           MYSQL_DATABASE: laravel
@@ -42,7 +43,8 @@ jobs:
 
       - run: php artisan migrate:fresh --seed 
       - run: php artisan key:generate
-
+      - run: npm install
+      - run: npm run build
       - run: 
           name: Execute unit test
           # command: php artisan test --testsuite=Feature 'tests/Feature/Http/Controllers/PostControllerTest.php'
