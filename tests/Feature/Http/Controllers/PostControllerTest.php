@@ -290,6 +290,16 @@ class PostControllerTest extends TestCase
                 5,
                 5
             ],
+            // case 3: filter by title
+            [
+                [
+                    'title' => "aabbb",
+                    'author' => '',
+                    'page' => 1
+                ],
+                0,
+                0
+            ],
             // case 3: filter by special character
             [
                 [
