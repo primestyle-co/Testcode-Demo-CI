@@ -43,8 +43,12 @@ jobs:
 
       - run: php artisan migrate:fresh --seed 
       - run: php artisan key:generate
-      - run: npm install
-      - run: npm run build
+
+      - run: 
+          name: install init node_modules test font-end
+          command: |
+            npm install
+            npm run build
       - run: 
           name: Execute unit test
           # command: php artisan test --testsuite=Feature 'tests/Feature/Http/Controllers/PostControllerTest.php'
