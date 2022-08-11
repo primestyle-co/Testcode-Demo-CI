@@ -40,7 +40,6 @@ jobs:
           command: composer install
 
       - run: php artisan migrate:fresh --seed --env=testing
-      - run: php artisan key:generate
 
       - run: 
           name: install init node_modules test font-end
