@@ -41,9 +41,9 @@ jobs:
       #       mkdir -p database
       #       touch database/laravel.sqlite 
 
-      #- run: 
-       #   name: Create file env
-        #  command: php -r "file_exists('.env') || copy('.env.example', '.env');"
+      - run: 
+         name: Create file env
+         command: php -r "file_exists('.env') || copy('.env.example', '.env');"
 
       - run: 
           name: Run composer
@@ -61,10 +61,10 @@ jobs:
           name: Execute unit test
           # command: php artisan test --testsuite=Feature 'tests/Feature/Http/Controllers/PostControllerTest.php'
           # ./vendor/bin/phpunit
-          #
+          # php artisan test --testsuite=Feature
           command: |
             mkdir -p ~/reports
-            phpdbg -qrr php artisan test --testsuite=Feature --log-junit ./reports/junit.xml tests
+            phpdbg -qrr ./vendor/bin/phpunit --log-junit ./reports/junit.xml tests
       - run: 
           name: Setup and run lint
           command: |
