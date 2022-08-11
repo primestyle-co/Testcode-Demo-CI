@@ -19,11 +19,11 @@ jobs:
 
     steps:
       - checkout
-      # - run:
-      #     name: Create connect between mysql and laravel
-      #     command: |
-      #       sudo docker-php-ext-install pdo_mysql
-      #       sudo docker-php-ext-enable pdo_mysql 
+      - run:
+          name: Create connect between mysql and laravel
+          command: sudo docker-php-ext-install pdo_mysql
+            # sudo docker-php-ext-install pdo_mysql
+            # sudo docker-php-ext-enable pdo_mysql 
       # - run: sudo apt-get update && sudo apt-get install npm
       # - run: 
       #     name: Create database
