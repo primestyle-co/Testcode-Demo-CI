@@ -53,6 +53,7 @@ jobs:
           name: Execute unit test
           # command: php artisan test --testsuite=Feature 'tests/Feature/Http/Controllers/PostControllerTest.php'
           # ./vendor/bin/phpunit
+          #
           command: |
             mkdir -p ~/reports
             phpdbg -qrr php artisan test --testsuite=Feature --log-junit ./reports/junit.xml tests
