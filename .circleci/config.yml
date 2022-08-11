@@ -39,7 +39,7 @@ jobs:
           name: Run composer
           command: composer install
 
-      - run: php artisan migrate:fresh --seed 
+      - run: php artisan migrate:fresh --seed --env=testing
       - run: php artisan key:generate
 
       - run: 
