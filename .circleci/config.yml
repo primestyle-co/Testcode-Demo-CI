@@ -76,4 +76,5 @@ jobs:
 workflows:
   say-hello-workflow:
     jobs:
+      - build
       - say-hello
