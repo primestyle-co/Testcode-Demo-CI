@@ -6,43 +6,40 @@ version: 2.1
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 
 jobs:
-  say-hello:
+  unit-test-backend:
     # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
     # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
     docker:
-      - image: circleci/php:8
+      - image: cimg/php:8.1.9-node
       - image: circleci/mysql:5.7
         environment:
           MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
           MYSQL_DATABASE: laravel
-      - image: circleci/node:14
+      # - image: cimg/node:18.7.0
 
     steps:
       - checkout
       - run:
           name: Create connect between mysql and laravel
-          command: |
-            sudo docker-php-ext-install pdo_mysql
-            sudo docker-php-ext-enable pdo_mysql 
-      - run: sudo apt-get update && sudo apt-get install npm
-      - run: 
-          name: Create database
-          command: |
-            mkdir -p database
-            touch database/laravel.sqlite 
+          command: sudo docker-php-ext-install pdo_mysql
+            # sudo docker-php-ext-install pdo_mysql
+            # sudo docker-php-ext-enable pdo_mysql 
+      # - run: sudo apt-get update && sudo apt-get install npm
+      # - run: 
+      #     name: Create database
+      #     command: |
+      #       mkdir -p database
+      #       touch database/laravel.sqlite 
 
-      - run: 
-          name: Create file env
-          command: php -r "file_exists('.env') || copy('.env.example', '.env');"
+      # - run: 
+      #    name: Create file env
+      #    command: php -r "file_exists('.env') || copy('.env.example', '.env');"
 
       - run: 
           name: Run composer
-          command: |
-            composer update
-            composer install
+          command: composer install
 
-      - run: php artisan migrate:fresh --seed 
-      - run: php artisan key:generate
+      - run: php artisan migrate:fresh --seed --env=testing
 
       - run: 
           name: install init node_modules test font-end
@@ -52,9 +49,49 @@ jobs:
       - run: 
           name: Execute unit test
           # command: php artisan test --testsuite=Feature 'tests/Feature/Http/Controllers/PostControllerTest.php'
+          # ./vendor/bin/phpunit
+          # php artisan test --testsuite=Feature
           command: |
             mkdir -p ~/reports
             phpdbg -qrr ./vendor/bin/phpunit --log-junit ./reports/junit.xml tests
+
+  unit-test-frontend:
+    # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
+    # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
+    docker:
+      - image: cimg/php:8.1.9-node
+    steps:
+      - checkout
+      - run: 
+          name: Run composer
+          command: composer install
+      - run: 
+          name: install init node_modules test font-end
+          command: |
+            npm install
+            npm run build
+      - run: 
+          name: install init node_modules test font-end
+          command: npm run test run --coverage 
+
+  lint-frontend:
+    docker:
+        # docker image mà ta sử dụng
+      - image: cimg/php:8.1.9-node
+    steps:
+      - checkout
+      - run: 
+          name: Setup and run lint
+          command: |
+            composer require overtrue/phplint --dev -vvv
+            ./vendor/bin/phplint
+
+  lint-backend:
+    docker:
+        # docker image mà ta sử dụng
+      - image: cimg/php:8.1.9-node
+    steps:
+      - checkout
       - run: 
           name: Setup and run lint
           command: |
@@ -64,6 +101,15 @@ jobs:
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 
 workflows:
-  say-hello-workflow:
+  build-and-test:
     jobs:
-      - say-hello
+      - lint-frontend
+      - lint-backend
+      - unit-test-frontend:
+          requires:
+            - lint-frontend
+            - lint-backend
+      - unit-test-backend:
+          requires:
+            - lint-frontend
+            - lint-backend
