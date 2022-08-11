@@ -25,15 +25,15 @@ jobs:
             sudo docker-php-ext-install pdo_mysql
             sudo docker-php-ext-enable pdo_mysql 
       - run: sudo apt-get update && sudo apt-get install npm
-      - run: 
-          name: Create database
-          command: |
-            mkdir -p database
-            touch database/laravel.sqlite 
+      # - run: 
+      #     name: Create database
+      #     command: |
+      #       mkdir -p database
+      #       touch database/laravel.sqlite 
 
-      - run: 
-          name: Create file env
-          command: php -r "file_exists('.env') || copy('.env.example', '.env');"
+      #- run: 
+       #   name: Create file env
+        #  command: php -r "file_exists('.env') || copy('.env.example', '.env');"
 
       - run: 
           name: Run composer
