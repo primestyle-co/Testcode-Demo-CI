@@ -31,15 +31,13 @@ jobs:
       #       mkdir -p database
       #       touch database/laravel.sqlite 
 
-      - run: 
-         name: Create file env
-         command: php -r "file_exists('.env') || copy('.env.example', '.env');"
+      # - run: 
+      #    name: Create file env
+      #    command: php -r "file_exists('.env') || copy('.env.example', '.env');"
 
       - run: 
           name: Run composer
-          command: |
-            composer update
-            composer install
+          command: composer install
 
       - run: php artisan migrate:fresh --seed 
       - run: php artisan key:generate
