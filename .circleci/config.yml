@@ -6,6 +6,12 @@ version: 2.1
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 
 jobs:
+  build:
+    docker:
+        # docker image mà ta sử dụng
+      - image: cimg/php:8.1.9-node
+    steps:
+      - checkout
   say-hello:
     # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
     # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
@@ -63,6 +69,9 @@ jobs:
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 
 workflows:
-  say-hello-workflow:
+  build-and-test:
     jobs:
-      - say-hello
+      - build
+      - say-hello:
+          requires:
+            - build
