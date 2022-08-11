@@ -74,7 +74,19 @@ jobs:
           name: install init node_modules test font-end
           command: npm run test run --coverage 
 
-  lint-code:
+  lint-frontend:
+    docker:
+        # docker image mà ta sử dụng
+      - image: cimg/php:8.1.9-node
+    steps:
+      - checkout
+      - run: 
+          name: Setup and run lint
+          command: |
+            composer require overtrue/phplint --dev -vvv
+            ./vendor/bin/phplint
+
+  lint-backend:
     docker:
         # docker image mà ta sử dụng
       - image: cimg/php:8.1.9-node
@@ -91,6 +103,11 @@ jobs:
 workflows:
   build-and-test:
     jobs:
-      - lint-code
-      - unit-test-frontend
-      - unit-test-backend
+      - lint-frontend
+      - lint-backend
+      - unit-test-frontend:
+          requires:
+            - lint-frontend
+      - unit-test-backend:
+          requires:
+            - lint-backend
