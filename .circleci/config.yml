@@ -47,7 +47,9 @@ jobs:
 
       - run: 
           name: Run composer
-          command: composer install
+          command: |
+            composer update
+            composer install
 
       - run: php artisan migrate:fresh --seed 
       - run: php artisan key:generate
