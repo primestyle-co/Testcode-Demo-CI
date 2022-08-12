@@ -85,7 +85,7 @@ jobs:
           command: yarn install
       - run: 
           name: Setup and run lint
-          command: yarn lint
+          command: yarn lint ./resources/js
 
   lint-backend:
     docker:
