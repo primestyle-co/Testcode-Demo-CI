@@ -5,10 +5,12 @@
 ```bash
 git clone git@github.com:primestyle-co/Testcode-Demo-CI.git
 cd Testcode-Demo-CI
-
-docker-compose up -d && docker-compose exec web bash -c "composer install && php artisan migrate" docker-compose exec node bash -c "yarn install && yarn run build"
 ```
-
+### Build
+```bash
+docker-compose up -d && docker-compose exec web bash -c "composer install && php artisan key:generate && php artisan migrate" && docker-compose exec node sh -c "yarn install && yarn run build"
+```
+Access http://localhost:8001
 
 ## UnitTest Laravel
 Depend on each project level, can implement unit test more or less, Laravel Testing can test Mode, Service, Mail, Controller, Helper, Console... whenever you create or update funtion you must write test for it. But it will take lots of time.

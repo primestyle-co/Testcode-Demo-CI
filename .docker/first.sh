@@ -24,4 +24,5 @@ fi
 # fi
 	#php artisan migrate
 
-php artisan serve --host=0.0.0.0 --port=80
+# php artisan serve --host=0.0.0.0 --port=80
+/usr/bin/supervisord
