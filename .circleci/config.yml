@@ -91,6 +91,7 @@ jobs:
         # docker image mà ta sử dụng
       - image: cimg/php:8.1.9-node
     steps:
+      - checkout
       - run: 
           name: Run composer
           command: composer install
@@ -104,9 +105,3 @@ workflows:
   build-and-test:
     jobs:
       - lint-backend
-      - unit-test-frontend:
-          requires:
-            - lint-backend
-      - unit-test-backend:
-          requires:
-            - lint-backend
