@@ -106,15 +106,10 @@ jobs:
 workflows:
   build-and-test:
     jobs:
-      - lint-frontend:
-          requires:
-            - lint-backend
       - lint-backend
       - unit-test-frontend:
           requires:
-            - lint-frontend
             - lint-backend
       - unit-test-backend:
           requires:
-            - lint-frontend
             - lint-backend
