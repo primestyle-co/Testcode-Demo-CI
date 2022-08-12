@@ -81,6 +81,9 @@ jobs:
     steps:
       - checkout
       - run: 
+          name: Run yarn
+          command: yarn install
+      - run: 
           name: Setup and run lint
           command: yarn lint
 
