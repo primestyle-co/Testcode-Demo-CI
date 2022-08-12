@@ -82,9 +82,7 @@ jobs:
       - checkout
       - run: 
           name: Setup and run lint
-          command: |
-            composer require overtrue/phplint --dev -vvv
-            ./vendor/bin/phplint
+          command: yarn lint
 
   lint-backend:
     docker:
@@ -106,4 +104,5 @@ jobs:
 workflows:
   build-and-test:
     jobs:
+      - lint-frontend
       - lint-backend
