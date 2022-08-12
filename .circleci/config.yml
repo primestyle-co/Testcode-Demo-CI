@@ -91,7 +91,8 @@ jobs:
         # docker image mà ta sử dụng
       - image: cimg/php:8.1.9-node
     steps:
-      - checkout
+      - attach_workspace:
+          at: .
       - run: 
           name: Run composer
           command: composer install
