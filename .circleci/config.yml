@@ -100,7 +100,7 @@ jobs:
           name: Setup and run lint
           command: |
             mkdir -p ./reports/junit
-            ./vendor/bin/php-cs-fixer fix --dry-run --format junit --config .php-cs-fixer.dist.php > ./reports/junit/results.xml
+            ./vendor/bin/php-cs-fixer fix
       - store_test_results:
           path: ./reports
       - store_artifacts:
