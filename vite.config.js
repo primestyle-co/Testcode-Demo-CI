@@ -5,6 +5,10 @@ const path = require('path');
  
         // laravel(['resources/js/app.js']),
 export default defineConfig({
+    server: {
+        host: '0.0.0.0',
+        port: '8002'
+    },
     resolve:{
         alias:{
             '@' : path.resolve(__dirname, './resources/js')

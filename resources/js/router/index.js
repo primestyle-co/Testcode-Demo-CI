@@ -1,7 +1,6 @@
 import {
   createRouter,
-  createWebHistory,
-  createWebHashHistory,
+  createWebHistory
 } from "vue-router";
 
 // 2. Define some routes

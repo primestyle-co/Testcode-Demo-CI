@@ -1,5 +1,5 @@
 <template>
-  <Header ref="header"/>
+  <HTMLHeader ref="header"/>
   <div class="demo-dropdown-wrap">
     <a-dropdown-button>
       {{ user.name }}
@@ -48,28 +48,26 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, provide, ref, computed } from "vue";
-import { UserOutlined, DownOutlined } from '@ant-design/icons-vue';
-import Header from "@/components/header/Header.vue";
+import { defineComponent, ref, computed } from "vue";
+import { UserOutlined } from '@ant-design/icons-vue';
+import HTMLHeader from "@/components/header/HTMLHeader.vue";
 import { useStore } from "vuex";
 import router from "@/router";
 
 export default defineComponent({
   components: {
     UserOutlined,
-    DownOutlined,
-    Header,
+    HTMLHeader,
   },
   setup() {
     const store = useStore();
     const user = computed(() => {
-      console.log(store.state.auth, 'tung useruseruser')
       return store.state.auth.user
     });
     const selectedKeys = ref<string[]>(['1']);
     const openKeys = ref<string[]>(['sub1']);
     const logout = () => {
-      store.dispatch("auth/logout").then(res => {
+      store.dispatch("auth/logout").then(() => {
         router.push('/login');
       });
     }

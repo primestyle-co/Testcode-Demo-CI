@@ -9,7 +9,7 @@ export default {
     return http.post("/auth/register", params);
   },
 
-  logout (params, cb, errorCb) {
+  logout () {
     return http.post("/auth/logout");
   }
 }

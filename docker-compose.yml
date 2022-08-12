@@ -25,6 +25,8 @@ services:
     working_dir: /var/www
     volumes:
       - .:/var/www
+    ports:
+      - 8002:8002
 
   db:
     container_name: unittest_db

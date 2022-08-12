@@ -11,13 +11,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, provide, ref } from "vue";
-import Header from "@/components/header/Header.vue";
+import { defineComponent } from "vue";
 
 export default defineComponent({
-  components: {
-    Header,
-  },
   setup() {
     return {
     };

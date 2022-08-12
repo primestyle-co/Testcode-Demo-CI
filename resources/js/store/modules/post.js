@@ -16,27 +16,27 @@ const getters = {
 
 // actions
 const actions = {
-  search ({ commit, state }, params) {
+  search ({ commit }, params) {
     return postApi.search(params).then(res => {
       commit('setPosts', res.data.posts);
     });
   },
 
-  create ({ commit, state }, params) {
+  create (_, params) {
     return postApi.create(params);
   },
 
-  update ({ commit, state }, params) {
+  update (_, params) {
     return postApi.update(params);
   },
 
-  detail ({ commit, state }, id) {
+  detail ({ commit }, id) {
     return postApi.detail(id).then(res => {
       commit('setEditPost', res.data.post);
     });
   },
 
-  delete ({ commit, state }, id) {
+  delete (_, id) {
     return postApi.delete(id);
   },
 }
