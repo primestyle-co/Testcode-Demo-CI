@@ -99,7 +99,7 @@ jobs:
           name: Setup and run lint
           command: |
             mkdir -p ./reports/junit
-            ./vendor/bin/php-cs-fixer fix --dry-run --format junit
+            ./vendor/bin/php-cs-fixer fix --dry-run --format junit --config .php-cs-fixer.dist.php > ./reports/junit/results.xml
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 
