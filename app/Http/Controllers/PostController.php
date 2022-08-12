@@ -2,31 +2,33 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
+use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Validation\ValidationException;
-use App\Models\Post;
 
 class PostController extends Controller
 {
     /**
      * Show the confirm password view.
      *
+     * @param Request $request
+     *
      * @return \Illuminate\View\View
      */
     public function index(Request $request)
     {
         $posts = Post::with('user');
+
         if ($request->title) {
             $posts->where('title', 'like', '%' . $request->title . '%');
         }
+
         if ($request->author) {
-            $posts->whereHas('user', function ( $query) use ($request) {
-                $query->where('name', 'like', '%' . $request->author .'%');
+            $posts->whereHas('user', function ($query) use ($request) {
+                $query->where('name', 'like', '%' . $request->author . '%');
             });
         }
+
         if ($request->sort_field) {
             $posts->orderBy($request->sort_field, $request->sort_direction);
         }
@@ -39,7 +41,8 @@ class PostController extends Controller
     /**
      * Confirm the user's password.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return mixed
      */
     public function create(Request $request)
@@ -48,7 +51,7 @@ class PostController extends Controller
             'title' => ['required'],
             'content' => ['required']
         ]);
-        $post = new Post;
+        $post = new Post();
         $post->title = $request->title;
         $post->content = $request->content;
         $post->created_by = Auth::user()->id;
@@ -63,7 +66,9 @@ class PostController extends Controller
     /**
      * Confirm the user's password.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     * @param mixed $id
+     *
      * @return mixed
      */
     public function store(Request $request, $id)
@@ -86,7 +91,9 @@ class PostController extends Controller
     /**
      * Confirm the user's password.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     * @param mixed $id
+     *
      * @return mixed
      */
     public function detail(Request $request, $id)
@@ -99,7 +106,7 @@ class PostController extends Controller
 
     public function delete(Request $request, $id)
     {
-        $post =  Post::where(['id' => $id, 'created_by' => Auth::user()->id])->firstOrFail();
+        $post = Post::where(['id' => $id, 'created_by' => Auth::user()->id])->firstOrFail();
         $post->title = $request->title;
         $post->content = $request->content;
         $post->delete();
@@ -108,5 +115,4 @@ class PostController extends Controller
             'status' => 'ok'
         ]);
     }
-
 }

@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,15 +14,15 @@ use App\Http\Controllers\PostController;
 |
 */
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
 Route::prefix('api')->middleware('auth')->group(function () {
     Route::get('posts', [PostController::class, 'index'])
-                ->name('posts.list');
+        ->name('posts.list');
     Route::post('posts/create', [PostController::class, 'create']);
 
     Route::post('posts/{id}', [PostController::class, 'store'])
-                ->name('login');
+        ->name('login');
     Route::get('posts/{id}', [PostController::class, 'detail']);
     Route::post('posts/delete/{id}', [PostController::class, 'delete']);
 });
@@ -37,5 +37,3 @@ Route::get('{any}', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
-
-
