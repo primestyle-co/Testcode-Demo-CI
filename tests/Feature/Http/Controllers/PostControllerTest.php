@@ -293,7 +293,7 @@ class PostControllerTest extends TestCase
             // case 3: filter by title
             [
                 [
-                    'title' =>  'aabbb',
+                    'title' => 'aabbb',
                     'author' => '',
                     'page' => 1
                 ],
