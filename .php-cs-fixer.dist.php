@@ -30,7 +30,7 @@ return (new PhpCsFixer\Config())
         'concat_space' => ['spacing' => 'one'],
         'date_time_immutable' => true,
         'declare_equal_normalize' => true,
-        'declare_strict_types' => false,
+        'declare_strict_types' => true,
         'dir_constant' => true,
         'ereg_to_preg' => true,
         'error_suppression' => ['noise_remaining_usages' => true],
@@ -158,7 +158,7 @@ return (new PhpCsFixer\Config())
     ])
     ->setFinder(PhpCsFixer\Finder::create()
         ->exclude([
-            'deploy', 'docker', 'vendor', 'bootstrap'
+            'deploy', 'docker', 'frontend', 'backend/vendor', 'bootstrap'
         ])
         ->in(__DIR__)
     );
