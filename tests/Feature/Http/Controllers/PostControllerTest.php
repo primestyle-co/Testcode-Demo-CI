@@ -13,7 +13,7 @@ class PostControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    private $user;
+    public $user;
 
     public function setUp(): void
     {
@@ -240,7 +240,7 @@ class PostControllerTest extends TestCase
         ]);
     }
 
-    private function initData()
+    public function initData()
     {
         $user = User::factory()->create();
         $this->user = $user;
@@ -267,7 +267,7 @@ class PostControllerTest extends TestCase
         }
     }
 
-    private function indexProvider()
+    public function indexProvider()
     {
         return [
             // case 1: init
@@ -349,7 +349,7 @@ class PostControllerTest extends TestCase
         ];
     }
 
-    private function createValidateMessageProvider()
+    public function createValidateMessageProvider()
     {
         return [
             // case 1: title empty
@@ -394,7 +394,7 @@ class PostControllerTest extends TestCase
         ];
     }
 
-    private function storeValidateMessageProvider()
+    public function storeValidateMessageProvider()
     {
         return [
             // case 1: title empty
