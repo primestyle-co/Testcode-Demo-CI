@@ -101,6 +101,10 @@ jobs:
           command: |
             mkdir -p ./reports/junit
             ./vendor/bin/php-cs-fixer fix --dry-run --format junit --config .php-cs-fixer.dist.php > ./reports/junit/results.xml
+      - store_test_results:
+          path: ./reports
+      - store_artifacts:
+          path: ./reports
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 
