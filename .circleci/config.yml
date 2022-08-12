@@ -93,6 +93,9 @@ jobs:
     steps:
       - checkout
       - run: 
+          name: Run composer
+          command: composer install
+      - run: 
           name: Setup and run lint
           command: |
             mkdir -p ./reports/junit
@@ -103,7 +106,9 @@ jobs:
 workflows:
   build-and-test:
     jobs:
-      - lint-frontend
+      - lint-frontend:
+          requires:
+            - lint-backend
       - lint-backend
       - unit-test-frontend:
           requires:
