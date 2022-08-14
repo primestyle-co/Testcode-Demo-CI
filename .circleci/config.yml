@@ -44,8 +44,8 @@ jobs:
       - run: 
           name: install init node_modules test font-end
           command: |
-            npm install
-            npm run build
+            yarn install
+            yarn run build
       - run: 
           name: Execute unit test
           # command: php artisan test --testsuite=Feature 'tests/Feature/Http/Controllers/PostControllerTest.php'
