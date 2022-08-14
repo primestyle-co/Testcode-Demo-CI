@@ -68,8 +68,8 @@ jobs:
       - run: 
           name: install init node_modules test font-end
           command: |
-            npm install
-            npm run build
+            yarn install
+            yarn run build
       - run: 
           name: install init node_modules test font-end
           command: npm run test run --coverage 
