@@ -6,9 +6,19 @@ module.exports = {
   extends: [
     "plugin:vue/vue3-essential",
     "eslint:recommended",
+    // "@vue/typescript/recommended",
+    "@vue/prettier",
+    // "@vue/prettier/@typescript-eslint",
+    // "@typescript-eslint",
+    // "@typescript-eslint/recommended",
+    // "plugin:@typescript-eslint/recommended"
+    // "eslint:recommended",
+    // "plugin:@typescript-eslint/recommended",
+    // "plugin:@typescript-eslint/recommended-requiring-type-checking"
   ],
   parserOptions: {
     ecmaVersion: 2020,
+    // project: ['./tsconfig.json']
   },
   rules: {
     "no-console": "off",
