@@ -8,7 +8,11 @@ cd Testcode-Demo-CI
 ```
 ### Build
 ```bash
-docker-compose up -d && docker-compose exec web bash -c "composer install && php artisan key:generate && php artisan migrate" && docker-compose exec node sh -c "yarn install" && docker-compose exec node yarn run dev
+docker-compose up -d && docker-compose exec web bash -c "composer install && php artisan key:generate && php artisan migrate" && docker-compose exec yarn install
+```
+### Run Server
+```
+docker-compose exec node yarn run dev
 ```
 Access http://localhost:8001
 
