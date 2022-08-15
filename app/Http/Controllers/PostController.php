@@ -50,7 +50,7 @@ class PostController extends Controller
     public function create(Request $request)
     {
         $request->validate([
-            'title' => ['required'],
+            'title' =>   ['required'],
             'content' => ['required']
         ]);
         $post = new Post();

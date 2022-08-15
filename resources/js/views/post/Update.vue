@@ -53,12 +53,12 @@ export default defineComponent({
             wrapperCol: { span: 16 },
         };
         const store = useStore();
-
+        let message = '';
         const validateMessages = {
-            required: "${label} is required!",
+            required: '${label} is required',
             types: {
-                email: "${label} is not a valid email!",
-                number: "${label} is not a valid number!",
+                email: "${label} is not a valid email",
+                number: "${label} is not a valid number" , 
             },
             number: {
                 range: "${label} must be between ${min} and ${max}",
