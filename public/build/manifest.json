@@ -1,0 +1,83 @@
+{
+  "resources/js/app.js": {
+    "file": "assets/app.bf2c33b3.js",
+    "src": "resources/js/app.js",
+    "isEntry": true,
+    "dynamicImports": [
+      "resources/js/layouts/AuthLayout.vue",
+      "resources/js/views/Home.vue",
+      "resources/js/views/post/List.vue",
+      "resources/js/views/post/Create.vue",
+      "resources/js/layouts/GuestLayout.vue",
+      "resources/js/views/auth/Login.vue",
+      "resources/js/views/auth/Register.vue"
+    ],
+    "css": [
+      "assets/app.01665792.css"
+    ]
+  },
+  "resources/js/layouts/AuthLayout.vue": {
+    "file": "assets/AuthLayout.61474e4c.js",
+    "src": "resources/js/layouts/AuthLayout.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "_Header.4bc76690.js",
+      "resources/js/app.js"
+    ]
+  },
+  "_Header.4bc76690.js": {
+    "file": "assets/Header.4bc76690.js",
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "resources/js/views/Home.vue": {
+    "file": "assets/Home.a3d669fb.js",
+    "src": "resources/js/views/Home.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "resources/js/views/post/List.vue": {
+    "file": "assets/List.80df962f.js",
+    "src": "resources/js/views/post/List.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "resources/js/views/post/Create.vue": {
+    "file": "assets/Create.9b210efe.js",
+    "src": "resources/js/views/post/Create.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "resources/js/layouts/GuestLayout.vue": {
+    "file": "assets/GuestLayout.1e506306.js",
+    "src": "resources/js/layouts/GuestLayout.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "_Header.4bc76690.js",
+      "resources/js/app.js"
+    ]
+  },
+  "resources/js/views/auth/Login.vue": {
+    "file": "assets/Login.e7ce9d05.js",
+    "src": "resources/js/views/auth/Login.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "resources/js/views/auth/Register.vue": {
+    "file": "assets/Register.c3f709f2.js",
+    "src": "resources/js/views/auth/Register.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ]
+  }
+}
