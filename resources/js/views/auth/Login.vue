@@ -1,7 +1,7 @@
 <template>
     <a-layout>
         <a-typography-title :level="2" style="text-align: center"
-            >Loginaaa</a-typography-title
+            >Login</a-typography-title
         >
         <a-form
             :model="formState"
