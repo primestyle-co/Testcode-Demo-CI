@@ -13,6 +13,7 @@ $commands = array(
     'whoami',
     'cd /srv/qa.primelabo.com.vn/Testcode-Demo-CI',
     'ls',
+    'which git',
     'git pull origin main',
     'git pull git@github.com:primestyle-co/Testcode-Demo-CI.git main',
     'git status',
@@ -21,14 +22,8 @@ $commands = array(
     // 'git submodule status',
 );
 
-$output = '';
-$tmp = shell_exec('git pull');
-
-$output .= "<span style=\"color: #6BE234;\">\$</span><span style=\"color: #729FCF;\">{$command}\n</span><br />";
-$output .= htmlentities(trim($tmp)) . "\n<br /><br />";
-
 // exec commands
-
+$output = '';
 foreach ($commands as $command) {
     $tmp = shell_exec($command);
 
