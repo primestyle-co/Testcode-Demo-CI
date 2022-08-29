@@ -9,8 +9,8 @@
 
 // array of commands
 $commands = array(
-    // 'echo $PWD',
-    // 'whoami',
+    'echo $PWD',
+    'whoami',
     'cd /srv/qa.primelabo.com.vn/Testcode-Demo-CI',
     'git pull',
     'git status',
