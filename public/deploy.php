@@ -14,16 +14,16 @@ $commands = array(
     'cd /srv/qa.primelabo.com.vn/Testcode-Demo-CI/public',
     'ls',
     'which git',
-    './script.sh',
-    // '/usr/bin/git pull origin main',
-    // '/usr/bin/git pull git@github.com:primestyle-co/Testcode-Demo-CI.git main',
-    // '/usr/bin/git status',
-    // 'git submodule sync',
-    // 'git submodule update',
-    // 'git submodule status',
+    // './script.sh',
+    'git pull origin main',
+    'git pull git@github.com:primestyle-co/Testcode-Demo-CI.git main',
+    'git status',
+    '/usr/bin/git pull origin main',
+    '/usr/bin/git pull git@github.com:primestyle-co/Testcode-Demo-CI.git main',
+    '/usr/bin/git status',
 );
 
-system('git pull origin main');
+// system('git pull origin main');
 
 // exec commands
 $output = '';
