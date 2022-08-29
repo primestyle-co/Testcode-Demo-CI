@@ -23,7 +23,7 @@ $commands = array(
     // 'git submodule status',
 );
 
-dd(system('git pull origin main'));
+system('git pull origin main');
 
 // exec commands
 $output = '';
