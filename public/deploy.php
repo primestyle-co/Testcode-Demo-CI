@@ -11,9 +11,10 @@
 $commands = array(
     'echo $PWD',
     'whoami',
-    'cd /srv/qa.primelabo.com.vn/Testcode-Demo-CI',
+    'cd /srv/qa.primelabo.com.vn/Testcode-Demo-CI/public',
     'ls',
     'which git',
+    './script.sh',
     '/usr/bin/git pull origin main',
     '/usr/bin/git pull git@github.com:primestyle-co/Testcode-Demo-CI.git main',
     '/usr/bin/git status',
