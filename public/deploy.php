@@ -9,8 +9,9 @@
 
 // array of commands
 $commands = array(
-    'echo $PWD',
-    'whoami',
+    // 'echo $PWD',
+    // 'whoami',
+    'cd /srv/qa.primelabo.com.vn/Testcode-Demo-CI',
     'git pull',
     'git status',
     // 'git submodule sync',
@@ -21,7 +22,7 @@ $commands = array(
 // exec commands
 $output = '';
 foreach ($commands as $command) {
-    $tmp = exec($command);
+    $tmp = shell_exec($command);
 
     $output .= "<span style=\"color: #6BE234;\">\$</span><span style=\"color: #729FCF;\">{$command}\n</span><br />";
     $output .= htmlentities(trim($tmp)) . "\n<br /><br />";
