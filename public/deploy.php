@@ -21,14 +21,14 @@ $commands = array(
     // 'git submodule status',
 );
 
-
+$output = '';
 $tmp = shell_exec('git pull');
 
 $output .= "<span style=\"color: #6BE234;\">\$</span><span style=\"color: #729FCF;\">{$command}\n</span><br />";
 $output .= htmlentities(trim($tmp)) . "\n<br /><br />";
 
 // exec commands
-$output = '';
+
 foreach ($commands as $command) {
     $tmp = shell_exec($command);
 
