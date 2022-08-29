@@ -39,8 +39,3 @@ Route::get('{any}', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
-
-
-Route::post('/deyloy', function(){
-    return view("deyloy");
-});
