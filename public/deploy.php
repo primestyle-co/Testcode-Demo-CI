@@ -39,7 +39,7 @@ foreach ($commands as $command) {
 <body style="background-color: #000000; color: #FFFFFF; font-weight: bold; padding: 0 10px;">
     <div style="width:700px">
         <div style="float:left;width:350px;">
-            <p style="color:white;">Git Deployment Script</p>
+            <p style="color:white;">Git Deployment Script fdsfds</p>
             <?php echo $output; ?>
         </div>
     </div>
