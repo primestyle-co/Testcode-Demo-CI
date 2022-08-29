@@ -12,7 +12,7 @@ $commands = array(
     'echo $PWD',
     'whoami',
     'cd /srv/qa.primelabo.com.vn/Testcode-Demo-CI',
-    'git pull',
+    'git pull git@github.com:primestyle-co/Testcode-Demo-CI.git main',
     'git status',
     // 'git submodule sync',
     // 'git submodule update',
