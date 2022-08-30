@@ -14,7 +14,7 @@ $commands = array(
     // 'echo $PWD',
     // 'ls',
     // 'which git',
-    'sh ./script.sh > /home/scripts/log.txt &',
+    'sh /srv/qa.primelabo.com.vn/Testcode-Demo-CI/public/script.sh > /srv/qa.primelabo.com.vn/Testcode-Demo-CI/public/log.txt',
     // 'git pull origin main',
     //'git pull git@github.com:primestyle-co/Testcode-Demo-CI.git main',
     //'git status',
