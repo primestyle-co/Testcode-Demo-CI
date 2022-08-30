@@ -11,7 +11,7 @@
 $commands = array(
     'echo $PWD',
     'whoami',
-    'cd /srv/qa.primelabo.com.vn/Testcode-Demo-CI/public',
+    'cd /srv/qa.primelabo.com.vn/Testcode-Demo-CI',
     'ls',
     'which git',
     // './script.sh',
