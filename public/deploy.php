@@ -6,21 +6,20 @@
  * Used for automatically deploying websites via GitHub
  *
  */
-use Illuminate\Support\Facades\Log;
 
 // array of commands
 $commands = array(
-    'echo $PWD',
     'whoami',
     'cd /srv/qa.primelabo.com.vn/Testcode-Demo-CI',
+    'echo $PWD',
     'ls',
     'which git',
     // './script.sh',
     'git pull origin main',
-    'git pull git@github.com:primestyle-co/Testcode-Demo-CI.git main',
-    'git status',
-    '/usr/bin/git pull origin main',
-    '/usr/bin/git pull git@github.com:primestyle-co/Testcode-Demo-CI.git main',
+    //'git pull git@github.com:primestyle-co/Testcode-Demo-CI.git main',
+    //'git status',
+    //'/usr/bin/git pull origin main',
+    //'/usr/bin/git pull git@github.com:primestyle-co/Testcode-Demo-CI.git main',
     '/usr/bin/git status',
 );
 
@@ -29,14 +28,7 @@ $commands = array(
 // exec commands
 $output = '';
 foreach ($commands as $command) {
-    $tmp = '';
-
-    try {
-        $tmp = shell_exec($command);    
-    } catch (\Throwable $th) {
-        Log::info($th);
-    }
-    
+    $tmp = shell_exec($command);
 
     $output .= "<span style=\"color: #6BE234;\">\$</span><span style=\"color: #729FCF;\">{$command}\n</span><br />";
     $output .= htmlentities(trim($tmp)) . "\n<br /><br />";
