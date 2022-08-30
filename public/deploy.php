@@ -6,6 +6,7 @@
  * Used for automatically deploying websites via GitHub
  *
  */
+use Illuminate\Support\Facades\Log;
 
 // array of commands
 $commands = array(
@@ -28,7 +29,14 @@ $commands = array(
 // exec commands
 $output = '';
 foreach ($commands as $command) {
-    $tmp = shell_exec($command);
+    $tmp = '';
+
+    try {
+        $tmp = shell_exec($command);    
+    } catch (\Throwable $th) {
+        Log::info($th);
+    }
+    
 
     $output .= "<span style=\"color: #6BE234;\">\$</span><span style=\"color: #729FCF;\">{$command}\n</span><br />";
     $output .= htmlentities(trim($tmp)) . "\n<br /><br />";
