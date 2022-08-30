@@ -9,18 +9,18 @@
 
 // array of commands
 $commands = array(
-    'whoami',
-    'cd /srv/qa.primelabo.com.vn/Testcode-Demo-CI',
-    'echo $PWD',
-    'ls',
-    'which git',
-    // './script.sh',
-    'git pull origin main',
+    // 'whoami',
+    // 'cd /srv/qa.primelabo.com.vn/Testcode-Demo-CI',
+    // 'echo $PWD',
+    // 'ls',
+    // 'which git',
+    'sh ./script.sh > /home/scripts/log.txt &',
+    // 'git pull origin main',
     //'git pull git@github.com:primestyle-co/Testcode-Demo-CI.git main',
     //'git status',
     //'/usr/bin/git pull origin main',
     //'/usr/bin/git pull git@github.com:primestyle-co/Testcode-Demo-CI.git main',
-    '/usr/bin/git status',
+    // '/usr/bin/git status',
 );
 
 // system('git pull origin main');

@@ -1,2 +1,3 @@
 #!/bin/bash
-git pull git@github.com:primestyle-co/Testcode-Demo-CI.git main
+whoami;
+cd /srv/qa.primelabo.com.vn/Testcode-Demo-CI && git pull origin main
