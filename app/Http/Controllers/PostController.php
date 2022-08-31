@@ -58,7 +58,7 @@ class PostController extends Controller
         $post->content = $request->content;
         $post->created_by = Auth::user()->id;
         $post->save();
-
+        // response
         return response()->json([
             'status' => 'ok',
             'post' => $post,
