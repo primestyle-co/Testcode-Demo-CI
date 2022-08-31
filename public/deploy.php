@@ -9,14 +9,21 @@
 
 // array of commands
 $commands = array(
-    // 'echo $PWD',
     // 'whoami',
-    'git pull',
-    // 'git status',
-    // 'git submodule sync',
-    // 'git submodule update',
-    // 'git submodule status',
+    // 'cd /srv/qa.primelabo.com.vn/Testcode-Demo-CI',
+    // 'echo $PWD',
+    // 'ls',
+    // 'which git',
+    'sh /srv/qa.primelabo.com.vn/Testcode-Demo-CI/public/script.sh > /srv/qa.primelabo.com.vn/Testcode-Demo-CI/public/log.txt',
+    // 'git pull origin main',
+    //'git pull git@github.com:primestyle-co/Testcode-Demo-CI.git main',
+    //'git status',
+    //'/usr/bin/git pull origin main',
+    //'/usr/bin/git pull git@github.com:primestyle-co/Testcode-Demo-CI.git main',
+    // '/usr/bin/git status',
 );
+
+// system('git pull origin main');
 
 // exec commands
 $output = '';
@@ -39,7 +46,7 @@ foreach ($commands as $command) {
 <body style="background-color: #000000; color: #FFFFFF; font-weight: bold; padding: 0 10px;">
     <div style="width:700px">
         <div style="float:left;width:350px;">
-            <p style="color:white;">Git Deployment Script</p>
+            <p style="color:white;">Git Deployment Script fdsfds</p>
             <?php echo $output; ?>
         </div>
     </div>

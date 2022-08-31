@@ -5,6 +5,7 @@ declare(strict_types=1);
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Http\Request;
 
+die(phpinfo());
 define('LARAVEL_START', microtime(true));
 
 /*
