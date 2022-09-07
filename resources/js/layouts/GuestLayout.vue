@@ -1,7 +1,7 @@
 <template>
     <p style="text-align: center">
         <a-space :size="10" style="text-align: center">
-            <router-link to="/login">Loginaaaaaaa</router-link>
+            <router-link to="/login">Login</router-link>
             <router-link to="/register">Register</router-link>
         </a-space>
     </p>
