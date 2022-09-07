@@ -72,7 +72,6 @@ class PostControllerTest extends TestCase
         $this->actingAs($this->user);
         $response = $this->postJson('api/posts/create', $params);
         $response->assertStatus(422);
-        // $response->assertExactJson('errors', $errors);
         $response->assertJson(['errors' => $errors]);
     }
 
