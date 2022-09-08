@@ -81,6 +81,7 @@
 <script lang="ts">
 import { defineComponent, reactive, ref, onBeforeMount, computed } from "vue";
 import { useStore } from "vuex";
+import { message } from "ant-design-vue";
 
 export default defineComponent({
     setup() {
@@ -107,6 +108,10 @@ export default defineComponent({
         const onDelete = (id) => {
             store.dispatch("post/delete", id).then(() => {
                 store.dispatch("post/search", formState);
+            }).catch((error) => {
+                if(error.response.status === 404) {
+                    message.error("you can't delete other people's posts");
+                }
             });
         };
 

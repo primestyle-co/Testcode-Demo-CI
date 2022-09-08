@@ -3,8 +3,8 @@ import authApi from './../../api/apis/auth'
 // initial state
 // shape: [{ id, quantity }]
 const state = {
-  user: window.user,
-  login: true,
+  user: window.user || {},
+  login: Object.keys(window.user|| {}).length,
   checkoutStatus: null
 }
 // getters
@@ -22,11 +22,19 @@ const actions = {
   },
 
   logout ({ state, commit }) {
-    authApi.logout();
+    return authApi.logout().then(() => {
+      commit('setUser', {});
+      commit('setLogin', false);
+    });
   },
 
   register ({ state, commit }, params) {
-    return authApi.register(params);
+    return authApi.register(params).then(res => {
+      console.log('tung register store');
+      commit('setUser', res.data.auth);
+      commit('setLogin', true);
+      return res;
+    });
   }
 }
 

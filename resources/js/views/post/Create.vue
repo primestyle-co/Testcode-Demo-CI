@@ -38,7 +38,7 @@
                         :wrapper-col="{ ...layout.wrapperCol, offset: 8 }"
                     >
                         <a-button type="primary" html-type="submit"
-                            >Create</a-button
+                            >{{ id ? "Update" : "Create" }}</a-button
                         >
                     </a-form-item>
                 </a-col>
@@ -53,10 +53,12 @@ import { defineComponent, onBeforeMount, computed } from "vue";
 import { useStore } from "vuex";
 import router from "@/router";
 import { message } from "ant-design-vue";
+import { useRoute } from "vue-router";
 
 export default defineComponent({
     props: ["id"],
     setup(props) {
+        const route = useRoute();
         const layout = {
             labelCol: { span: 8 },
             wrapperCol: { span: 16 },
@@ -102,6 +104,9 @@ export default defineComponent({
                         }
                     })
                     .catch((error) => {
+                        if(error.response.status === 404) {
+                            message.error("you can't edit other people's posts");
+                        }
                         if (error.response.data.errors) {
                             for (var prop in error.response.data.errors) {
                                 message.error(error.response.data.errors[prop]);
