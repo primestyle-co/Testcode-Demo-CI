@@ -17,7 +17,7 @@ jobs:
           known_hosts: unnecessary
 
       - name: Adding Known Hosts
-        run: ssh-keyscan -H ${{ secrets.SSH_HOST }}  >> ~/.ssh/known_hosts
+        run: ssh-keyscan -p ${{ secrets.SSH_PORT}} -H ${{ secrets.SSH_HOST }}  >> ~/.ssh/known_hosts
 
       - name: Deploy with rsync ttt
         run: rsync -avz -e "ssh -p ${{ secrets.SSH_PORT }}" ./Testcode-Demo-CI/ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/srv/qa.primelabo.com.vn/Testcode-Demo-CI
