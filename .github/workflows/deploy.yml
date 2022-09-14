@@ -17,18 +17,17 @@ jobs:
           known_hosts: unnecessary
 
       - name: Adding Known Hosts
-        run: ssh-keyscan -p ${{ secrets.SSH_PORT}} -H ${{ secrets.SSH_HOST }}  >> ~/.ssh/known_hosts
+        run: ssh-keyscan -H ${{ secrets.SSH_HOST }}  >> ~/.ssh/known_hosts
 
-      - name: Deploy with rsync
+      - name: Deploy with rsync ttt
         run: rsync -avz -e "ssh -p ${{ secrets.SSH_PORT }}" ./Testcode-Demo-CI/ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/srv/qa.primelabo.com.vn/Testcode-Demo-CI
 
-      - name: Restart Node Server
+      - name: SSH 
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          port: ${{ secrets.SSH_PORT }}
           script: |
             cd /srv/qa.primelabo.com.vn/Testcode-Demo-CI
             git fetch origin master
