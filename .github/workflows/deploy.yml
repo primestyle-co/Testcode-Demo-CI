@@ -31,3 +31,4 @@ jobs:
           script: |
             cd /srv/qa.primelabo.com.vn/Testcode-Demo-CI
             git pull 
+            cat > bar.txt
