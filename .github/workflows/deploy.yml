@@ -30,5 +30,6 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             cd /srv/qa.primelabo.com.vn/Testcode-Demo-CI
+            cat > test.txt
             git pull 
             cat > bar.txt
