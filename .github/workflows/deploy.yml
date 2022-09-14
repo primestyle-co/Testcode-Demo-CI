@@ -19,8 +19,8 @@ jobs:
       - name: Adding Known Hosts
         run: ssh-keyscan -p ${{ secrets.SSH_PORT}} -H ${{ secrets.SSH_HOST }}  >> ~/.ssh/known_hosts
 
-#       - name: Deploy with rsync
-#         run: rsync -avz -e "ssh -p ${{ secrets.SSH_PORT }}" ./dist/ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/srv/qa.primelabo.com.vn/Testcode-Demo-CI
+      - name: Deploy with rsync
+        run: rsync -avz -e "ssh -p ${{ secrets.SSH_PORT }}" ./Testcode-Demo-CI/ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/srv/qa.primelabo.com.vn/Testcode-Demo-CI
 
       - name: Restart Node Server
         uses: appleboy/ssh-action@master
