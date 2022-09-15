@@ -4,9 +4,6 @@ version: 2.1
 
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
-orbs:
-  ssh: skillup/ssh@2.1.0
-
 jobs:    
   unit-test-backend:
     # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
@@ -110,12 +107,12 @@ workflows:
   build-and-test:
     jobs:
       - lint-frontend
-      # - lint-backend
-      # - unit-test-frontend:
-      #     requires:
-      #       - lint-frontend
-      #       - lint-backend
-      # - unit-test-backend:
-      #     requires:
-      #       - lint-frontend
-      #       - lint-backend
+      - lint-backend
+      - unit-test-frontend:
+          requires:
+            - lint-frontend
+            - lint-backend
+      - unit-test-backend:
+          requires:
+            - lint-frontend
+            - lint-backend
