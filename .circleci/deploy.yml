@@ -10,7 +10,7 @@ jobs:
         - run:
             name: Deploy Over SSH
             command: |
-            ssh $SSH_USER@$SSH_HOST -i $SSH_PRIVATE_KEY "git pull"
+                ssh $SSH_USER@$SSH_HOST -i $SSH_PRIVATE_KEY "cd /srv/qa.primelabo.com.vn/Testcode-Demo-CI; git pull"
 
 workflows:
     version: 2
