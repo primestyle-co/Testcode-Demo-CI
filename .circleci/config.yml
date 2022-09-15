@@ -102,13 +102,13 @@ jobs:
             ./vendor/bin/php-cs-fixer fix --dry-run --format junit --config .php-cs-fixer.dist.php
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
-build:
+  build:
     #...
-deploy:
+  deploy:
     machine:
-        enabled: true
+      enabled: true
     steps:
-        - run:
+      - run:
             name: Deploy Over SSH
             command: |
               ssh $SSH_USER@$SSH_HOST -i $SSH_PRIVATE_KEY "cd /srv/qa.primelabo.com.vn/Testcode-Demo-CI && git pull"
