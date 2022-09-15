@@ -1,6 +1,6 @@
 <template>
     <p style="text-align: center">
-        <a-space :size="10" style="text-align: center; font-size: 18px;">
+        <a-space :size="10" style="text-align: center; font-size: 18px">
             <router-link to="/login">Login</router-link>
             <router-link to="/register">Register</router-link>
         </a-space>
@@ -11,9 +11,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from "vue";
-import { useStore } from "vuex";
-import router from "@/router";
+import { defineComponent } from "vue";
 
 export default defineComponent({
     setup() {
