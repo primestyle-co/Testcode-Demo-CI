@@ -1,14 +1,13 @@
-<?php
+<?php declare(strict_types=1);
 
 /**
  * GIT DEPLOYMENT SCRIPT
  *
  * Used for automatically deploying websites via GitHub
- *
  */
 
 // array of commands
-$commands = array(
+$commands = [
     // 'whoami',
     // 'cd /srv/qa.primelabo.com.vn/Testcode-Demo-CI',
     // 'echo $PWD',
@@ -21,12 +20,13 @@ $commands = array(
     //'/usr/bin/git pull origin main',
     //'/usr/bin/git pull git@github.com:primestyle-co/Testcode-Demo-CI.git main',
     // '/usr/bin/git status',
-);
+];
 
 // system('git pull origin main');
 
 // exec commands
 $output = '';
+
 foreach ($commands as $command) {
     $tmp = shell_exec($command);
 
