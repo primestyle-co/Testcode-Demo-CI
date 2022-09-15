@@ -132,4 +132,4 @@ workflows:
             - unit-test-backend
           filters:
             branches:
-              only: test_update_code_for_auto_deploy  # only deploy on the main branch
+              only: main  # only deploy on the main branch
