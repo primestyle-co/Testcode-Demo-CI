@@ -6,7 +6,7 @@ use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Http\Request;
 
 define('LARAVEL_START', microtime(true));
-// test 1
+// test 12
 /*
 |--------------------------------------------------------------------------
 | Check If The Application Is Under Maintenance
