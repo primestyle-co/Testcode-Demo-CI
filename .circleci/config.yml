@@ -124,10 +124,10 @@ workflows:
           requires:
             - lint-frontend
             - lint-backend
-      - deploy:
-          requires:
-            - unit-test-frontend
-            - unit-test-backend
-          filters:
-            branches:
-              only: main  # only deploy on the main branch
+#      - deploy:
+#          requires:
+#            - unit-test-frontend
+#            - unit-test-backend
+#          filters:
+#            branches:
+#              only: main  # only deploy on the main branch
