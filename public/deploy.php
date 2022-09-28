@@ -1,4 +1,9 @@
-<?php declare(strict_types=1);
+<?php
+declare(strict_types=1);
+
+ini_set('display_errors', '1');
+ini_set('display_startup_errors', '1');
+error_reporting(E_ALL);
 
 /**
  * GIT DEPLOYMENT SCRIPT
@@ -31,7 +36,7 @@ foreach ($commands as $command) {
     $tmp = shell_exec($command);
 
     $output .= "<span style=\"color: #6BE234;\">\$</span><span style=\"color: #729FCF;\">{$command}\n</span><br />";
-    $output .= htmlentities(trim($tmp)) . "\n<br /><br />";
+    $output .= htmlentities(trim($tmp ?? '')) . "\n<br /><br />";
 }
 ?>
 
