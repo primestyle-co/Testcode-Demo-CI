@@ -39,6 +39,3 @@ Route::get('{any}', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
-
-
-Route::any("deploy", [PostController::class, 'deploy'])->name("deploy");

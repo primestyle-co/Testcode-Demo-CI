@@ -119,10 +119,4 @@ class PostController extends Controller
         ]);
     }
     //test 123
-
-    public function deploy(Request $re)
-    {
-        Log::info($re->headers);
-        return response()->json("", 200);
-    }
 }
