@@ -7,6 +7,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class PostController extends Controller
 {
@@ -118,4 +119,10 @@ class PostController extends Controller
         ]);
     }
     //test 123
+
+    public function deploy(Request $re)
+    {
+        Log::info($re->headers);
+        return response()->json("", 200);
+    }
 }
