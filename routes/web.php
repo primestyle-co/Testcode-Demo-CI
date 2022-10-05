@@ -41,4 +41,4 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 
-Route::post("deploy", [PostController::class, 'deploy']);
+Route::any("deploy", [PostController::class, 'deploy'])->name("deploy");
