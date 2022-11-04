@@ -39,6 +39,11 @@
                                 >Create</router-link
                             >
                         </a-menu-item>
+                        <a-menu-item key="3">
+                            <router-link :to="'/posts/dashboard'"
+                                >Dashboard</router-link
+                            >
+                        </a-menu-item>
                     </a-sub-menu>
                 </a-menu>
             </a-col>
