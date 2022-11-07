@@ -35,6 +35,9 @@ Route::prefix('api')->middleware('auth')->group(function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 });
+Route::get('/test10', function () {
+    return view('test10');
+});
 Route::get('{any}', function () {
     return view('welcome');
 })->where('any', '.*');
