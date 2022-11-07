@@ -34,6 +34,14 @@ const routes = [
                 }
             },
             {
+                path: "posts/dashboard",
+                name: "posts_dashboard",
+                component: () => import("../views/post/Dashboard.vue"),
+                meta: {
+                    requiresAuth: true
+                }
+            },
+            {
                 path: "posts/:id",
                 name: "post_update",
                 component: () => import("../views/post/Create.vue"),
