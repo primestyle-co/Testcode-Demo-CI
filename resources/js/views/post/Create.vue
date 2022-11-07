@@ -1,10 +1,9 @@
 <template>
     <div>
-        Test Dashboard 11/7/2022
         <a-page-header
             style="border: 1px solid rgb(235, 237, 240)"
-            title="Create"
-            sub-title="Create a post"
+            title="Create Test"
+            sub-title="Create a post test on 11/7/2022"
         />
         <a-form
             :model="formState"
