@@ -1,6 +1,5 @@
 <!DOCTYPE HTML>
 <html lang="en-US">
-
 <head>
     <meta charset="UTF-8">
     <title>GIT DEPLOYMENT SCRIPT</title>
@@ -33,7 +32,6 @@
         <div >
             <p style="color:white;">Quicksight dashboard</p>
             <div class="container">
-                     
                         <iframe
                         class="responsive-iframe"
 
