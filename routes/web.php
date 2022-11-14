@@ -38,6 +38,9 @@ Route::get('/dashboard', function () {
 Route::get('/test10', function () {
     return view('test10');
 })->middleware(['auth'])->name('dashboard');
+Route::get('/quicksight', function () {
+    return view('quicksight');
+})->middleware(['auth'])->name('dashboard');
 Route::get('{any}', function () {
     return view('welcome');
 })->where('any', '.*');
