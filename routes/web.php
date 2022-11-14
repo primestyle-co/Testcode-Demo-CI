@@ -35,12 +35,13 @@ Route::prefix('api')->middleware('auth')->group(function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 });
-Route::get('/test10', function () {
+Route::get('/testdash', function () {
     return view('test10');
-})->middleware(['auth'])->name('dashboard');
-Route::get('/quicksight', function () {
-    return view('quicksight');
-})->middleware(['auth'])->name('dashboard');
+})->middleware(['auth'])->name('testdash');
+
+Route::get('/uploadfile', 'App\Http\Controllers\FeedbackController@create');
+Route::post('/storefile','App\Http\Controllers\FeedbackController@store');
+
 Route::get('{any}', function () {
     return view('welcome');
 })->where('any', '.*');
@@ -48,3 +49,15 @@ Route::get('{any}', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
+// Route::get('/uploadfile', function () {
+//     return view('create');
+// })->middleware(['auth'])->name('uploadfile');
+// Route::post('/storefile', function(){dd('testsss');});
+
+// Route::prefix('uploadfile')->group(function () {
+//     Route::get('/', 'FeedbackController@create');
+       
+//     Route::post('/', 'FeedbackController@store');
+
+//     Route::get('/{feedback}', 'FeedbackController@show');
+// });
